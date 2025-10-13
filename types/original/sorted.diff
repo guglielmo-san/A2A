@@ -1,0 +1,153 @@
+--- /dev/fd/63	2025-10-13 17:49:38.947258739 +0000
++++ /dev/fd/62	2025-10-13 17:49:38.947258739 +0000
+@@ -1,77 +1,93 @@
++export interface A2AServiceClient extends grpc.Client {
++export interface A2AServiceDefinition extends grpc.ServiceDefinition {
++export interface A2AServiceHandlers extends grpc.UntypedServiceImplementation {
+ export interface AgentCapabilities {
++export interface AgentCapabilities__Output {
+ export interface AgentCard {
++export interface AgentCard__Output {
+ export interface AgentCardSignature {
++export interface AgentCardSignature__Output {
+ export interface AgentExtension {
++export interface AgentExtension__Output {
+ export interface AgentInterface {
++export interface AgentInterface__Output {
+ export interface AgentProvider {
++export interface AgentProvider__Output {
+ export interface AgentSkill {
+-export interface APIKeySecurityScheme extends SecuritySchemeBase {
++export interface AgentSkill__Output {
++export interface APIKeySecurityScheme {
++export interface APIKeySecurityScheme__Output {
+ export interface Artifact {
+-export interface AuthenticatedExtendedCardNotConfiguredError
++export interface Artifact__Output {
++export interface AuthenticationInfo {
++export interface AuthenticationInfo__Output {
+ export interface AuthorizationCodeOAuthFlow {
+-export interface CancelTaskRequest extends JSONRPCRequest {
+-export interface CancelTaskSuccessResponse extends JSONRPCSuccessResponse {
++export interface AuthorizationCodeOAuthFlow__Output {
++export interface CancelTaskRequest {
++export interface CancelTaskRequest__Output {
+ export interface ClientCredentialsOAuthFlow {
+-export interface ContentTypeNotSupportedError extends JSONRPCError {
+-export interface DataPart extends PartBase {
+-export interface DeleteTaskPushNotificationConfigParams extends TaskIdParams {
+-export interface DeleteTaskPushNotificationConfigRequest
+-export interface DeleteTaskPushNotificationConfigSuccessResponse
+-export interface FileBase {
+-export interface FilePart extends PartBase {
+-export interface FileWithBytes extends FileBase {
+-export interface FileWithUri extends FileBase {
+-export interface GetAuthenticatedExtendedCardRequest extends JSONRPCRequest {
+-export interface GetAuthenticatedExtendedCardSuccessResponse
+-export interface GetTaskPushNotificationConfigParams extends TaskIdParams {
+-export interface GetTaskPushNotificationConfigRequest extends JSONRPCRequest {
+-export interface GetTaskPushNotificationConfigSuccessResponse
+-export interface GetTaskRequest extends JSONRPCRequest {
+-export interface GetTaskSuccessResponse extends JSONRPCSuccessResponse {
+-export interface HTTPAuthSecurityScheme extends SecuritySchemeBase {
++export interface ClientCredentialsOAuthFlow__Output {
++export interface CreateTaskPushNotificationConfigRequest {
++export interface CreateTaskPushNotificationConfigRequest__Output {
++export interface DataPart {
++export interface DataPart__Output {
++export interface DeleteTaskPushNotificationConfigRequest {
++export interface DeleteTaskPushNotificationConfigRequest__Output {
++export interface FilePart {
++export interface FilePart__Output {
++export interface GetAgentCardRequest {}
++export interface GetAgentCardRequest__Output {}
++export interface GetTaskPushNotificationConfigRequest {
++export interface GetTaskPushNotificationConfigRequest__Output {
++export interface GetTaskRequest {
++export interface GetTaskRequest__Output {
++export interface HTTPAuthSecurityScheme {
++export interface HTTPAuthSecurityScheme__Output {
+ export interface ImplicitOAuthFlow {
+-export interface InternalError extends JSONRPCError {
+-export interface InvalidAgentResponseError extends JSONRPCError {
+-export interface InvalidParamsError extends JSONRPCError {
+-export interface InvalidRequestError extends JSONRPCError {
+-export interface JSONParseError extends JSONRPCError {
+-export interface JSONRPCError {
+-export interface JSONRPCErrorResponse extends JSONRPCMessage {
+-export interface JSONRPCMessage {
+-export interface JSONRPCRequest extends JSONRPCMessage {
+-export interface JSONRPCSuccessResponse extends JSONRPCMessage {
+-export interface ListTaskPushNotificationConfigParams extends TaskIdParams {}
+-export interface ListTaskPushNotificationConfigRequest extends JSONRPCRequest {
+-export interface ListTaskPushNotificationConfigSuccessResponse
++export interface ImplicitOAuthFlow__Output {
++export interface ListTaskPushNotificationConfigRequest {
++export interface ListTaskPushNotificationConfigRequest__Output {
++export interface ListTaskPushNotificationConfigResponse {
++export interface ListTaskPushNotificationConfigResponse__Output {
+ export interface Message {
+-export interface MessageSendConfiguration {
+-export interface MessageSendParams {
+-export interface MethodNotFoundError extends JSONRPCError {
+-export interface MutualTLSSecurityScheme extends SecuritySchemeBase {
+-export interface OAuth2SecurityScheme extends SecuritySchemeBase {
++export interface Message__Output {
++export interface MutualTlsSecurityScheme {
++export interface MutualTlsSecurityScheme__Output {
++export interface OAuth2SecurityScheme {
++export interface OAuth2SecurityScheme__Output {
+ export interface OAuthFlows {
+-export interface OpenIdConnectSecurityScheme extends SecuritySchemeBase {
+-export interface PartBase {
++export interface OAuthFlows__Output {
++export interface OpenIdConnectSecurityScheme {
++export interface OpenIdConnectSecurityScheme__Output {
++export interface Part {
++export interface Part__Output {
+ export interface PasswordOAuthFlow {
+-export interface PushNotificationAuthenticationInfo {
++export interface PasswordOAuthFlow__Output {
+ export interface PushNotificationConfig {
+-export interface PushNotificationNotSupportedError extends JSONRPCError {
+-export interface SecuritySchemeBase {
+-export interface SendMessageRequest extends JSONRPCRequest {
+-export interface SendMessageSuccessResponse extends JSONRPCSuccessResponse {
+-export interface SendStreamingMessageRequest extends JSONRPCRequest {
+-export interface SendStreamingMessageSuccessResponse
+-export interface SetTaskPushNotificationConfigRequest extends JSONRPCRequest {
+-export interface SetTaskPushNotificationConfigSuccessResponse
++export interface PushNotificationConfig__Output {
++export interface Security {
++export interface Security__Output {
++export interface SecurityScheme {
++export interface SecurityScheme__Output {
++export interface SendMessageConfiguration {
++export interface SendMessageConfiguration__Output {
++export interface SendMessageRequest {
++export interface SendMessageRequest__Output {
++export interface SendMessageResponse {
++export interface SendMessageResponse__Output {
++export interface StreamResponse {
++export interface StreamResponse__Output {
++export interface StringList {
++export interface StringList__Output {
+ export interface Task {
+ export interface TaskArtifactUpdateEvent {
+-export interface TaskIdParams {
+-export interface TaskNotCancelableError extends JSONRPCError {
+-export interface TaskNotFoundError extends JSONRPCError {
++export interface TaskArtifactUpdateEvent__Output {
++export interface Task__Output {
+ export interface TaskPushNotificationConfig {
+-export interface TaskQueryParams extends TaskIdParams {
+-export interface TaskResubscriptionRequest extends JSONRPCRequest {
++export interface TaskPushNotificationConfig__Output {
+ export interface TaskStatus {
++export interface TaskStatus__Output {
+ export interface TaskStatusUpdateEvent {
+-export interface TextPart extends PartBase {
+-export interface UnsupportedOperationError extends JSONRPCError {
++export interface TaskStatusUpdateEvent__Output {
++export interface TaskSubscriptionRequest {
++export interface TaskSubscriptionRequest__Output {
