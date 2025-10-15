@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/.a2a.v1.AgentProvider",
+  "definitions": {
+    ".a2a.v1.AgentProvider": {
+      "properties": {
+        "url": {
+          "$ref": "#/definitions/.a2a.v1.AgentProvider.url"
+        },
+        "organization": {
+          "$ref": "#/definitions/.a2a.v1.AgentProvider.organization"
+        }
+      },
+      "type": "object",
+      "required": [
+        "url",
+        "organization"
+      ],
+      "description": "--8\u003c-- [start:AgentProvider]\n Represents information about the service provider of an agent."
+    },
+    ".a2a.v1.AgentProvider.organization": {
+      "type": "string",
+      "description": "The providers organization name\n Example: \"Google\""
+    },
+    ".a2a.v1.AgentProvider.url": {
+      "type": "string",
+      "description": "The providers reference url\n Example: \"https://ai.google.dev\""
+    }
+  },
+  "type": "object"
+}
