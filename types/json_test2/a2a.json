@@ -1,0 +1,2450 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "a2a.v1.SendMessageConfiguration": {
+      "type": "object",
+      "properties": {
+        "accepted_output_modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "push_notification": {
+          "$ref": "#/definitions/PushNotificationConfig"
+        },
+        "history_length": {
+          "type": "integer"
+        },
+        "blocking": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "accepted_output_modes",
+        "push_notification",
+        "history_length",
+        "blocking"
+      ]
+    },
+    "a2a.v1.Task": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "context_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/TaskStatus"
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Artifact"
+          }
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Message"
+          }
+        },
+        "metadata": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        }
+      },
+      "required": [
+        "id",
+        "context_id",
+        "status",
+        "artifacts",
+        "history",
+        "metadata"
+      ]
+    },
+    "a2a.v1.TaskState": {
+      "type": "string",
+      "enum": [
+        "TASK_STATE_UNSPECIFIED",
+        "TASK_STATE_SUBMITTED",
+        "TASK_STATE_WORKING",
+        "TASK_STATE_COMPLETED",
+        "TASK_STATE_FAILED",
+        "TASK_STATE_CANCELLED",
+        "TASK_STATE_INPUT_REQUIRED",
+        "TASK_STATE_REJECTED",
+        "TASK_STATE_AUTH_REQUIRED"
+      ]
+    },
+    "a2a.v1.TaskStatus": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/TaskState"
+        },
+        "update": {
+          "$ref": "#/definitions/Message"
+        },
+        "timestamp": {
+          "$ref": "#/definitions/google.protobuf.Timestamp"
+        }
+      },
+      "required": [
+        "state",
+        "update",
+        "timestamp"
+      ]
+    },
+    "a2a.v1.Part": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "file": {
+          "$ref": "#/definitions/FilePart"
+        },
+        "data": {
+          "$ref": "#/definitions/DataPart"
+        },
+        "metadata": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        }
+      },
+      "required": [
+        "text",
+        "file",
+        "data",
+        "metadata"
+      ]
+    },
+    "a2a.v1.FilePart": {
+      "type": "object",
+      "properties": {
+        "file_with_uri": {
+          "type": "string"
+        },
+        "file_with_bytes": {
+          "type": "string",
+          "contentEncoding": "base64"
+        },
+        "mime_type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file_with_uri",
+        "file_with_bytes",
+        "mime_type",
+        "name"
+      ]
+    },
+    "a2a.v1.DataPart": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "a2a.v1.Role": {
+      "type": "string",
+      "enum": [
+        "ROLE_UNSPECIFIED",
+        "ROLE_USER",
+        "ROLE_AGENT"
+      ]
+    },
+    "a2a.v1.Message": {
+      "type": "object",
+      "properties": {
+        "message_id": {
+          "type": "string"
+        },
+        "context_id": {
+          "type": "string"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/Role"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Part"
+          }
+        },
+        "metadata": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "message_id",
+        "context_id",
+        "task_id",
+        "role",
+        "content",
+        "metadata",
+        "extensions"
+      ]
+    },
+    "a2a.v1.Artifact": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Part"
+          }
+        },
+        "metadata": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "artifact_id",
+        "name",
+        "description",
+        "parts",
+        "metadata",
+        "extensions"
+      ]
+    },
+    "a2a.v1.TaskStatusUpdateEvent": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "context_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/TaskStatus"
+        },
+        "final": {
+          "type": "boolean"
+        },
+        "metadata": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        }
+      },
+      "required": [
+        "task_id",
+        "context_id",
+        "status",
+        "final",
+        "metadata"
+      ]
+    },
+    "a2a.v1.TaskArtifactUpdateEvent": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "string"
+        },
+        "context_id": {
+          "type": "string"
+        },
+        "artifact": {
+          "$ref": "#/definitions/Artifact"
+        },
+        "append": {
+          "type": "boolean"
+        },
+        "last_chunk": {
+          "type": "boolean"
+        },
+        "metadata": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        }
+      },
+      "required": [
+        "task_id",
+        "context_id",
+        "artifact",
+        "append",
+        "last_chunk",
+        "metadata"
+      ]
+    },
+    "a2a.v1.PushNotificationConfig": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "authentication": {
+          "$ref": "#/definitions/AuthenticationInfo"
+        }
+      },
+      "required": [
+        "id",
+        "url",
+        "token",
+        "authentication"
+      ]
+    },
+    "a2a.v1.AuthenticationInfo": {
+      "type": "object",
+      "properties": {
+        "schemes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "credentials": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schemes",
+        "credentials"
+      ]
+    },
+    "a2a.v1.AgentInterface": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "transport": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "transport"
+      ]
+    },
+    "a2a.v1.AgentCard": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "preferred_transport": {
+          "type": "string"
+        },
+        "additional_interfaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AgentInterface"
+          }
+        },
+        "provider": {
+          "$ref": "#/definitions/AgentProvider"
+        },
+        "version": {
+          "type": "string"
+        },
+        "documentation_url": {
+          "type": "string"
+        },
+        "capabilities": {
+          "$ref": "#/definitions/AgentCapabilities"
+        },
+        "security_schemes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/SecurityScheme"
+          }
+        },
+        "security": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Security"
+          }
+        },
+        "default_input_modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "default_output_modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AgentSkill"
+          }
+        },
+        "supports_authenticated_extended_card": {
+          "type": "boolean"
+        },
+        "signatures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AgentCardSignature"
+          }
+        },
+        "icon_url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "protocol_version",
+        "name",
+        "description",
+        "url",
+        "preferred_transport",
+        "additional_interfaces",
+        "provider",
+        "version",
+        "documentation_url",
+        "capabilities",
+        "security_schemes",
+        "security",
+        "default_input_modes",
+        "default_output_modes",
+        "skills",
+        "supports_authenticated_extended_card",
+        "signatures",
+        "icon_url"
+      ]
+    },
+    "a2a.v1.AgentProvider": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "organization"
+      ]
+    },
+    "a2a.v1.AgentCapabilities": {
+      "type": "object",
+      "properties": {
+        "streaming": {
+          "type": "boolean"
+        },
+        "push_notifications": {
+          "type": "boolean"
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AgentExtension"
+          }
+        }
+      },
+      "required": [
+        "streaming",
+        "push_notifications",
+        "extensions"
+      ]
+    },
+    "a2a.v1.AgentExtension": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "params": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        }
+      },
+      "required": [
+        "uri",
+        "description",
+        "required",
+        "params"
+      ]
+    },
+    "a2a.v1.AgentSkill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "input_modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output_modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "security": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Security"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "tags",
+        "examples",
+        "input_modes",
+        "output_modes",
+        "security"
+      ]
+    },
+    "a2a.v1.AgentCardSignature": {
+      "type": "object",
+      "properties": {
+        "protected": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        },
+        "header": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        }
+      },
+      "required": [
+        "protected",
+        "signature",
+        "header"
+      ]
+    },
+    "a2a.v1.TaskPushNotificationConfig": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "push_notification_config": {
+          "$ref": "#/definitions/PushNotificationConfig"
+        }
+      },
+      "required": [
+        "name",
+        "push_notification_config"
+      ]
+    },
+    "a2a.v1.StringList": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "list"
+      ]
+    },
+    "a2a.v1.Security": {
+      "type": "object",
+      "properties": {
+        "schemes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/StringList"
+          }
+        }
+      },
+      "required": [
+        "schemes"
+      ]
+    },
+    "a2a.v1.SecurityScheme": {
+      "type": "object",
+      "properties": {
+        "api_key_security_scheme": {
+          "$ref": "#/definitions/APIKeySecurityScheme"
+        },
+        "http_auth_security_scheme": {
+          "$ref": "#/definitions/HTTPAuthSecurityScheme"
+        },
+        "oauth2_security_scheme": {
+          "$ref": "#/definitions/OAuth2SecurityScheme"
+        },
+        "open_id_connect_security_scheme": {
+          "$ref": "#/definitions/OpenIdConnectSecurityScheme"
+        },
+        "mtls_security_scheme": {
+          "$ref": "#/definitions/MutualTlsSecurityScheme"
+        }
+      },
+      "required": [
+        "api_key_security_scheme",
+        "http_auth_security_scheme",
+        "oauth2_security_scheme",
+        "open_id_connect_security_scheme",
+        "mtls_security_scheme"
+      ]
+    },
+    "a2a.v1.APIKeySecurityScheme": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "location",
+        "name"
+      ]
+    },
+    "a2a.v1.HTTPAuthSecurityScheme": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "scheme": {
+          "type": "string"
+        },
+        "bearer_format": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "scheme",
+        "bearer_format"
+      ]
+    },
+    "a2a.v1.OAuth2SecurityScheme": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "flows": {
+          "$ref": "#/definitions/OAuthFlows"
+        },
+        "oauth2_metadata_url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "flows",
+        "oauth2_metadata_url"
+      ]
+    },
+    "a2a.v1.OpenIdConnectSecurityScheme": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "open_id_connect_url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "open_id_connect_url"
+      ]
+    },
+    "a2a.v1.MutualTlsSecurityScheme": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description"
+      ]
+    },
+    "a2a.v1.OAuthFlows": {
+      "type": "object",
+      "properties": {
+        "authorization_code": {
+          "$ref": "#/definitions/AuthorizationCodeOAuthFlow"
+        },
+        "client_credentials": {
+          "$ref": "#/definitions/ClientCredentialsOAuthFlow"
+        },
+        "implicit": {
+          "$ref": "#/definitions/ImplicitOAuthFlow"
+        },
+        "password": {
+          "$ref": "#/definitions/PasswordOAuthFlow"
+        }
+      },
+      "required": [
+        "authorization_code",
+        "client_credentials",
+        "implicit",
+        "password"
+      ]
+    },
+    "a2a.v1.AuthorizationCodeOAuthFlow": {
+      "type": "object",
+      "properties": {
+        "authorization_url": {
+          "type": "string"
+        },
+        "token_url": {
+          "type": "string"
+        },
+        "refresh_url": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "authorization_url",
+        "token_url",
+        "refresh_url",
+        "scopes"
+      ]
+    },
+    "a2a.v1.ClientCredentialsOAuthFlow": {
+      "type": "object",
+      "properties": {
+        "token_url": {
+          "type": "string"
+        },
+        "refresh_url": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "token_url",
+        "refresh_url",
+        "scopes"
+      ]
+    },
+    "a2a.v1.ImplicitOAuthFlow": {
+      "type": "object",
+      "properties": {
+        "authorization_url": {
+          "type": "string"
+        },
+        "refresh_url": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "authorization_url",
+        "refresh_url",
+        "scopes"
+      ]
+    },
+    "a2a.v1.PasswordOAuthFlow": {
+      "type": "object",
+      "properties": {
+        "token_url": {
+          "type": "string"
+        },
+        "refresh_url": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "token_url",
+        "refresh_url",
+        "scopes"
+      ]
+    },
+    "a2a.v1.SendMessageRequest": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "$ref": "#/definitions/Message"
+        },
+        "configuration": {
+          "$ref": "#/definitions/SendMessageConfiguration"
+        },
+        "metadata": {
+          "$ref": "#/definitions/google.protobuf.Struct"
+        }
+      },
+      "required": [
+        "request",
+        "configuration",
+        "metadata"
+      ]
+    },
+    "a2a.v1.GetTaskRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "history_length": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "history_length"
+      ]
+    },
+    "a2a.v1.CancelTaskRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "a2a.v1.GetTaskPushNotificationConfigRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "a2a.v1.DeleteTaskPushNotificationConfigRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "a2a.v1.CreateTaskPushNotificationConfigRequest": {
+      "type": "object",
+      "properties": {
+        "parent": {
+          "type": "string"
+        },
+        "config_id": {
+          "type": "string"
+        },
+        "config": {
+          "$ref": "#/definitions/TaskPushNotificationConfig"
+        }
+      },
+      "required": [
+        "parent",
+        "config_id",
+        "config"
+      ]
+    },
+    "a2a.v1.TaskSubscriptionRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "a2a.v1.ListTaskPushNotificationConfigRequest": {
+      "type": "object",
+      "properties": {
+        "parent": {
+          "type": "string"
+        },
+        "page_size": {
+          "type": "integer"
+        },
+        "page_token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parent",
+        "page_size",
+        "page_token"
+      ]
+    },
+    "a2a.v1.GetAgentCardRequest": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "a2a.v1.SendMessageResponse": {
+      "type": "object",
+      "properties": {
+        "task": {
+          "$ref": "#/definitions/Task"
+        },
+        "msg": {
+          "$ref": "#/definitions/Message"
+        }
+      },
+      "required": [
+        "task",
+        "msg"
+      ]
+    },
+    "a2a.v1.StreamResponse": {
+      "type": "object",
+      "properties": {
+        "task": {
+          "$ref": "#/definitions/Task"
+        },
+        "msg": {
+          "$ref": "#/definitions/Message"
+        },
+        "status_update": {
+          "$ref": "#/definitions/TaskStatusUpdateEvent"
+        },
+        "artifact_update": {
+          "$ref": "#/definitions/TaskArtifactUpdateEvent"
+        }
+      },
+      "required": [
+        "task",
+        "msg",
+        "status_update",
+        "artifact_update"
+      ]
+    },
+    "a2a.v1.ListTaskPushNotificationConfigResponse": {
+      "type": "object",
+      "properties": {
+        "configs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskPushNotificationConfig"
+          }
+        },
+        "next_page_token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "configs",
+        "next_page_token"
+      ]
+    },
+    "google.api.Http": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HttpRule"
+          }
+        },
+        "fully_decode_reserved_expansion": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "rules",
+        "fully_decode_reserved_expansion"
+      ]
+    },
+    "google.api.HttpRule": {
+      "type": "object",
+      "properties": {
+        "selector": {
+          "type": "string"
+        },
+        "get": {
+          "type": "string"
+        },
+        "put": {
+          "type": "string"
+        },
+        "post": {
+          "type": "string"
+        },
+        "delete": {
+          "type": "string"
+        },
+        "patch": {
+          "type": "string"
+        },
+        "custom": {
+          "$ref": "#/definitions/CustomHttpPattern"
+        },
+        "body": {
+          "type": "string"
+        },
+        "response_body": {
+          "type": "string"
+        },
+        "additional_bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HttpRule"
+          }
+        }
+      },
+      "required": [
+        "selector",
+        "get",
+        "put",
+        "post",
+        "delete",
+        "patch",
+        "custom",
+        "body",
+        "response_body",
+        "additional_bindings"
+      ]
+    },
+    "google.api.CustomHttpPattern": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "path"
+      ]
+    },
+    "google.api.CommonLanguageSettings": {
+      "type": "object",
+      "properties": {
+        "reference_docs_uri": {
+          "type": "string"
+        },
+        "destinations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClientLibraryDestination"
+          }
+        }
+      },
+      "required": [
+        "reference_docs_uri",
+        "destinations"
+      ]
+    },
+    "google.api.ClientLibrarySettings": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "launch_stage": {
+          "$ref": "#/definitions/LaunchStage"
+        },
+        "rest_numeric_enums": {
+          "type": "boolean"
+        },
+        "java_settings": {
+          "$ref": "#/definitions/JavaSettings"
+        },
+        "cpp_settings": {
+          "$ref": "#/definitions/CppSettings"
+        },
+        "php_settings": {
+          "$ref": "#/definitions/PhpSettings"
+        },
+        "python_settings": {
+          "$ref": "#/definitions/PythonSettings"
+        },
+        "node_settings": {
+          "$ref": "#/definitions/NodeSettings"
+        },
+        "dotnet_settings": {
+          "$ref": "#/definitions/DotnetSettings"
+        },
+        "ruby_settings": {
+          "$ref": "#/definitions/RubySettings"
+        },
+        "go_settings": {
+          "$ref": "#/definitions/GoSettings"
+        }
+      },
+      "required": [
+        "version",
+        "launch_stage",
+        "rest_numeric_enums",
+        "java_settings",
+        "cpp_settings",
+        "php_settings",
+        "python_settings",
+        "node_settings",
+        "dotnet_settings",
+        "ruby_settings",
+        "go_settings"
+      ]
+    },
+    "google.api.Publishing": {
+      "type": "object",
+      "properties": {
+        "method_settings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MethodSettings"
+          }
+        },
+        "new_issue_uri": {
+          "type": "string"
+        },
+        "documentation_uri": {
+          "type": "string"
+        },
+        "api_short_name": {
+          "type": "string"
+        },
+        "github_label": {
+          "type": "string"
+        },
+        "codeowner_github_teams": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "doc_tag_prefix": {
+          "type": "string"
+        },
+        "organization": {
+          "$ref": "#/definitions/ClientLibraryOrganization"
+        },
+        "library_settings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClientLibrarySettings"
+          }
+        }
+      },
+      "required": [
+        "method_settings",
+        "new_issue_uri",
+        "documentation_uri",
+        "api_short_name",
+        "github_label",
+        "codeowner_github_teams",
+        "doc_tag_prefix",
+        "organization",
+        "library_settings"
+      ]
+    },
+    "google.api.JavaSettings": {
+      "type": "object",
+      "properties": {
+        "library_package": {
+          "type": "string"
+        },
+        "service_class_names": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "common": {
+          "$ref": "#/definitions/CommonLanguageSettings"
+        }
+      },
+      "required": [
+        "library_package",
+        "service_class_names",
+        "common"
+      ]
+    },
+    "google.api.CppSettings": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "$ref": "#/definitions/CommonLanguageSettings"
+        }
+      },
+      "required": [
+        "common"
+      ]
+    },
+    "google.api.PhpSettings": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "$ref": "#/definitions/CommonLanguageSettings"
+        }
+      },
+      "required": [
+        "common"
+      ]
+    },
+    "google.api.PythonSettings": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "$ref": "#/definitions/CommonLanguageSettings"
+        }
+      },
+      "required": [
+        "common"
+      ]
+    },
+    "google.api.NodeSettings": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "$ref": "#/definitions/CommonLanguageSettings"
+        }
+      },
+      "required": [
+        "common"
+      ]
+    },
+    "google.api.DotnetSettings": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "$ref": "#/definitions/CommonLanguageSettings"
+        }
+      },
+      "required": [
+        "common"
+      ]
+    },
+    "google.api.RubySettings": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "$ref": "#/definitions/CommonLanguageSettings"
+        }
+      },
+      "required": [
+        "common"
+      ]
+    },
+    "google.api.GoSettings": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "$ref": "#/definitions/CommonLanguageSettings"
+        }
+      },
+      "required": [
+        "common"
+      ]
+    },
+    "google.api.MethodSettings": {
+      "type": "object",
+      "properties": {
+        "selector": {
+          "type": "string"
+        },
+        "long_running": {
+          "$ref": "#/definitions/LongRunning"
+        }
+      },
+      "required": [
+        "selector",
+        "long_running"
+      ]
+    },
+    "google.api.MethodSettings.LongRunning": {
+      "type": "object",
+      "properties": {
+        "initial_poll_delay": {
+          "$ref": "#/definitions/google.protobuf.Duration"
+        },
+        "poll_delay_multiplier": {
+          "type": "number"
+        },
+        "max_poll_delay": {
+          "$ref": "#/definitions/google.protobuf.Duration"
+        },
+        "total_poll_timeout": {
+          "$ref": "#/definitions/google.protobuf.Duration"
+        }
+      },
+      "required": [
+        "initial_poll_delay",
+        "poll_delay_multiplier",
+        "max_poll_delay",
+        "total_poll_timeout"
+      ]
+    },
+    "google.api.ClientLibraryOrganization": {
+      "type": "string",
+      "enum": [
+        "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED",
+        "CLOUD",
+        "ADS",
+        "PHOTOS",
+        "STREET_VIEW"
+      ]
+    },
+    "google.api.ClientLibraryDestination": {
+      "type": "string",
+      "enum": [
+        "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED",
+        "GITHUB",
+        "PACKAGE_MANAGER"
+      ]
+    },
+    "google.api.LaunchStage": {
+      "type": "string",
+      "enum": [
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED"
+      ]
+    },
+    "google.api.FieldBehavior": {
+      "type": "string",
+      "enum": [
+        "FIELD_BEHAVIOR_UNSPECIFIED",
+        "OPTIONAL",
+        "REQUIRED",
+        "OUTPUT_ONLY",
+        "INPUT_ONLY",
+        "IMMUTABLE",
+        "UNORDERED_LIST",
+        "NON_EMPTY_DEFAULT"
+      ]
+    },
+    "google.protobuf.FileDescriptorSet": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileDescriptorProto"
+          }
+        }
+      },
+      "required": [
+        "file"
+      ]
+    },
+    "google.protobuf.FileDescriptorProto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "package": {
+          "type": "string"
+        },
+        "dependency": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "public_dependency": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "weak_dependency": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "message_type": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DescriptorProto"
+          }
+        },
+        "enum_type": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnumDescriptorProto"
+          }
+        },
+        "service": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceDescriptorProto"
+          }
+        },
+        "extension": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FieldDescriptorProto"
+          }
+        },
+        "options": {
+          "$ref": "#/definitions/FileOptions"
+        },
+        "source_code_info": {
+          "$ref": "#/definitions/SourceCodeInfo"
+        },
+        "syntax": {
+          "type": "string"
+        },
+        "edition": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "package",
+        "dependency",
+        "public_dependency",
+        "weak_dependency",
+        "message_type",
+        "enum_type",
+        "service",
+        "extension",
+        "options",
+        "source_code_info",
+        "syntax",
+        "edition"
+      ]
+    },
+    "google.protobuf.DescriptorProto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "field": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FieldDescriptorProto"
+          }
+        },
+        "extension": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FieldDescriptorProto"
+          }
+        },
+        "nested_type": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DescriptorProto"
+          }
+        },
+        "enum_type": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnumDescriptorProto"
+          }
+        },
+        "extension_range": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExtensionRange"
+          }
+        },
+        "oneof_decl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OneofDescriptorProto"
+          }
+        },
+        "options": {
+          "$ref": "#/definitions/MessageOptions"
+        },
+        "reserved_range": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReservedRange"
+          }
+        },
+        "reserved_name": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "field",
+        "extension",
+        "nested_type",
+        "enum_type",
+        "extension_range",
+        "oneof_decl",
+        "options",
+        "reserved_range",
+        "reserved_name"
+      ]
+    },
+    "google.protobuf.DescriptorProto.ExtensionRange": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        },
+        "options": {
+          "$ref": "#/definitions/ExtensionRangeOptions"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "options"
+      ]
+    },
+    "google.protobuf.DescriptorProto.ReservedRange": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ]
+    },
+    "google.protobuf.ExtensionRangeOptions": {
+      "type": "object",
+      "properties": {
+        "uninterpreted_option": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UninterpretedOption"
+          }
+        }
+      },
+      "required": [
+        "uninterpreted_option"
+      ]
+    },
+    "google.protobuf.FieldDescriptorProto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "integer"
+        },
+        "label": {
+          "$ref": "#/definitions/Label"
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        },
+        "type_name": {
+          "type": "string"
+        },
+        "extendee": {
+          "type": "string"
+        },
+        "default_value": {
+          "type": "string"
+        },
+        "oneof_index": {
+          "type": "integer"
+        },
+        "json_name": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/FieldOptions"
+        },
+        "proto3_optional": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "number",
+        "label",
+        "type",
+        "type_name",
+        "extendee",
+        "default_value",
+        "oneof_index",
+        "json_name",
+        "options",
+        "proto3_optional"
+      ]
+    },
+    "google.protobuf.FieldDescriptorProto.Type": {
+      "type": "string",
+      "enum": [
+        "TYPE_DOUBLE",
+        "TYPE_FLOAT",
+        "TYPE_INT64",
+        "TYPE_UINT64",
+        "TYPE_INT32",
+        "TYPE_FIXED64",
+        "TYPE_FIXED32",
+        "TYPE_BOOL",
+        "TYPE_STRING",
+        "TYPE_GROUP",
+        "TYPE_MESSAGE",
+        "TYPE_BYTES",
+        "TYPE_UINT32",
+        "TYPE_ENUM",
+        "TYPE_SFIXED32",
+        "TYPE_SFIXED64",
+        "TYPE_SINT32",
+        "TYPE_SINT64"
+      ]
+    },
+    "google.protobuf.FieldDescriptorProto.Label": {
+      "type": "string",
+      "enum": [
+        "LABEL_OPTIONAL",
+        "LABEL_REQUIRED",
+        "LABEL_REPEATED"
+      ]
+    },
+    "google.protobuf.OneofDescriptorProto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/OneofOptions"
+        }
+      },
+      "required": [
+        "name",
+        "options"
+      ]
+    },
+    "google.protobuf.EnumDescriptorProto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnumValueDescriptorProto"
+          }
+        },
+        "options": {
+          "$ref": "#/definitions/EnumOptions"
+        },
+        "reserved_range": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnumReservedRange"
+          }
+        },
+        "reserved_name": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "options",
+        "reserved_range",
+        "reserved_name"
+      ]
+    },
+    "google.protobuf.EnumDescriptorProto.EnumReservedRange": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ]
+    },
+    "google.protobuf.EnumValueDescriptorProto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "integer"
+        },
+        "options": {
+          "$ref": "#/definitions/EnumValueOptions"
+        }
+      },
+      "required": [
+        "name",
+        "number",
+        "options"
+      ]
+    },
+    "google.protobuf.ServiceDescriptorProto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "method": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MethodDescriptorProto"
+          }
+        },
+        "options": {
+          "$ref": "#/definitions/ServiceOptions"
+        }
+      },
+      "required": [
+        "name",
+        "method",
+        "options"
+      ]
+    },
+    "google.protobuf.MethodDescriptorProto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "input_type": {
+          "type": "string"
+        },
+        "output_type": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/MethodOptions"
+        },
+        "client_streaming": {
+          "type": "boolean"
+        },
+        "server_streaming": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "input_type",
+        "output_type",
+        "options",
+        "client_streaming",
+        "server_streaming"
+      ]
+    },
+    "google.protobuf.FileOptions": {
+      "type": "object",
+      "properties": {
+        "java_package": {
+          "type": "string"
+        },
+        "java_outer_classname": {
+          "type": "string"
+        },
+        "java_multiple_files": {
+          "type": "boolean"
+        },
+        "java_generate_equals_and_hash": {
+          "type": "boolean"
+        },
+        "java_string_check_utf8": {
+          "type": "boolean"
+        },
+        "optimize_for": {
+          "$ref": "#/definitions/OptimizeMode"
+        },
+        "go_package": {
+          "type": "string"
+        },
+        "cc_generic_services": {
+          "type": "boolean"
+        },
+        "java_generic_services": {
+          "type": "boolean"
+        },
+        "py_generic_services": {
+          "type": "boolean"
+        },
+        "php_generic_services": {
+          "type": "boolean"
+        },
+        "deprecated": {
+          "type": "boolean"
+        },
+        "cc_enable_arenas": {
+          "type": "boolean"
+        },
+        "objc_class_prefix": {
+          "type": "string"
+        },
+        "csharp_namespace": {
+          "type": "string"
+        },
+        "swift_prefix": {
+          "type": "string"
+        },
+        "php_class_prefix": {
+          "type": "string"
+        },
+        "php_namespace": {
+          "type": "string"
+        },
+        "php_metadata_namespace": {
+          "type": "string"
+        },
+        "ruby_package": {
+          "type": "string"
+        },
+        "uninterpreted_option": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UninterpretedOption"
+          }
+        }
+      },
+      "required": [
+        "java_package",
+        "java_outer_classname",
+        "java_multiple_files",
+        "java_generate_equals_and_hash",
+        "java_string_check_utf8",
+        "optimize_for",
+        "go_package",
+        "cc_generic_services",
+        "java_generic_services",
+        "py_generic_services",
+        "php_generic_services",
+        "deprecated",
+        "cc_enable_arenas",
+        "objc_class_prefix",
+        "csharp_namespace",
+        "swift_prefix",
+        "php_class_prefix",
+        "php_namespace",
+        "php_metadata_namespace",
+        "ruby_package",
+        "uninterpreted_option"
+      ]
+    },
+    "google.protobuf.FileOptions.OptimizeMode": {
+      "type": "string",
+      "enum": [
+        "SPEED",
+        "CODE_SIZE",
+        "LITE_RUNTIME"
+      ]
+    },
+    "google.protobuf.MessageOptions": {
+      "type": "object",
+      "properties": {
+        "message_set_wire_format": {
+          "type": "boolean"
+        },
+        "no_standard_descriptor_accessor": {
+          "type": "boolean"
+        },
+        "deprecated": {
+          "type": "boolean"
+        },
+        "map_entry": {
+          "type": "boolean"
+        },
+        "deprecated_legacy_json_field_conflicts": {
+          "type": "boolean"
+        },
+        "uninterpreted_option": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UninterpretedOption"
+          }
+        }
+      },
+      "required": [
+        "message_set_wire_format",
+        "no_standard_descriptor_accessor",
+        "deprecated",
+        "map_entry",
+        "deprecated_legacy_json_field_conflicts",
+        "uninterpreted_option"
+      ]
+    },
+    "google.protobuf.FieldOptions": {
+      "type": "object",
+      "properties": {
+        "ctype": {
+          "$ref": "#/definitions/CType"
+        },
+        "packed": {
+          "type": "boolean"
+        },
+        "jstype": {
+          "$ref": "#/definitions/JSType"
+        },
+        "lazy": {
+          "type": "boolean"
+        },
+        "unverified_lazy": {
+          "type": "boolean"
+        },
+        "deprecated": {
+          "type": "boolean"
+        },
+        "weak": {
+          "type": "boolean"
+        },
+        "debug_redact": {
+          "type": "boolean"
+        },
+        "retention": {
+          "$ref": "#/definitions/OptionRetention"
+        },
+        "target": {
+          "$ref": "#/definitions/OptionTargetType"
+        },
+        "uninterpreted_option": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UninterpretedOption"
+          }
+        }
+      },
+      "required": [
+        "ctype",
+        "packed",
+        "jstype",
+        "lazy",
+        "unverified_lazy",
+        "deprecated",
+        "weak",
+        "debug_redact",
+        "retention",
+        "target",
+        "uninterpreted_option"
+      ]
+    },
+    "google.protobuf.FieldOptions.CType": {
+      "type": "string",
+      "enum": [
+        "STRING",
+        "CORD",
+        "STRING_PIECE"
+      ]
+    },
+    "google.protobuf.FieldOptions.JSType": {
+      "type": "string",
+      "enum": [
+        "JS_NORMAL",
+        "JS_STRING",
+        "JS_NUMBER"
+      ]
+    },
+    "google.protobuf.FieldOptions.OptionRetention": {
+      "type": "string",
+      "enum": [
+        "RETENTION_UNKNOWN",
+        "RETENTION_RUNTIME",
+        "RETENTION_SOURCE"
+      ]
+    },
+    "google.protobuf.FieldOptions.OptionTargetType": {
+      "type": "string",
+      "enum": [
+        "TARGET_TYPE_UNKNOWN",
+        "TARGET_TYPE_FILE",
+        "TARGET_TYPE_EXTENSION_RANGE",
+        "TARGET_TYPE_MESSAGE",
+        "TARGET_TYPE_FIELD",
+        "TARGET_TYPE_ONEOF",
+        "TARGET_TYPE_ENUM",
+        "TARGET_TYPE_ENUM_ENTRY",
+        "TARGET_TYPE_SERVICE",
+        "TARGET_TYPE_METHOD"
+      ]
+    },
+    "google.protobuf.OneofOptions": {
+      "type": "object",
+      "properties": {
+        "uninterpreted_option": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UninterpretedOption"
+          }
+        }
+      },
+      "required": [
+        "uninterpreted_option"
+      ]
+    },
+    "google.protobuf.EnumOptions": {
+      "type": "object",
+      "properties": {
+        "allow_alias": {
+          "type": "boolean"
+        },
+        "deprecated": {
+          "type": "boolean"
+        },
+        "deprecated_legacy_json_field_conflicts": {
+          "type": "boolean"
+        },
+        "uninterpreted_option": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UninterpretedOption"
+          }
+        }
+      },
+      "required": [
+        "allow_alias",
+        "deprecated",
+        "deprecated_legacy_json_field_conflicts",
+        "uninterpreted_option"
+      ]
+    },
+    "google.protobuf.EnumValueOptions": {
+      "type": "object",
+      "properties": {
+        "deprecated": {
+          "type": "boolean"
+        },
+        "uninterpreted_option": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UninterpretedOption"
+          }
+        }
+      },
+      "required": [
+        "deprecated",
+        "uninterpreted_option"
+      ]
+    },
+    "google.protobuf.ServiceOptions": {
+      "type": "object",
+      "properties": {
+        "deprecated": {
+          "type": "boolean"
+        },
+        "uninterpreted_option": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UninterpretedOption"
+          }
+        }
+      },
+      "required": [
+        "deprecated",
+        "uninterpreted_option"
+      ]
+    },
+    "google.protobuf.MethodOptions": {
+      "type": "object",
+      "properties": {
+        "deprecated": {
+          "type": "boolean"
+        },
+        "idempotency_level": {
+          "$ref": "#/definitions/IdempotencyLevel"
+        },
+        "uninterpreted_option": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UninterpretedOption"
+          }
+        }
+      },
+      "required": [
+        "deprecated",
+        "idempotency_level",
+        "uninterpreted_option"
+      ]
+    },
+    "google.protobuf.MethodOptions.IdempotencyLevel": {
+      "type": "string",
+      "enum": [
+        "IDEMPOTENCY_UNKNOWN",
+        "NO_SIDE_EFFECTS",
+        "IDEMPOTENT"
+      ]
+    },
+    "google.protobuf.UninterpretedOption": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NamePart"
+          }
+        },
+        "identifier_value": {
+          "type": "string"
+        },
+        "positive_int_value": {
+          "type": "string",
+          "format": "int64"
+        },
+        "negative_int_value": {
+          "type": "string",
+          "format": "int64"
+        },
+        "double_value": {
+          "type": "number"
+        },
+        "string_value": {
+          "type": "string",
+          "contentEncoding": "base64"
+        },
+        "aggregate_value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "identifier_value",
+        "positive_int_value",
+        "negative_int_value",
+        "double_value",
+        "string_value",
+        "aggregate_value"
+      ]
+    },
+    "google.protobuf.UninterpretedOption.NamePart": {
+      "type": "object",
+      "properties": {
+        "name_part": {
+          "type": "string"
+        },
+        "is_extension": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name_part",
+        "is_extension"
+      ]
+    },
+    "google.protobuf.SourceCodeInfo": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Location"
+          }
+        }
+      },
+      "required": [
+        "location"
+      ]
+    },
+    "google.protobuf.SourceCodeInfo.Location": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "leading_comments": {
+          "type": "string"
+        },
+        "trailing_comments": {
+          "type": "string"
+        },
+        "leading_detached_comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "path",
+        "span",
+        "leading_comments",
+        "trailing_comments",
+        "leading_detached_comments"
+      ]
+    },
+    "google.protobuf.GeneratedCodeInfo": {
+      "type": "object",
+      "properties": {
+        "annotation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Annotation"
+          }
+        }
+      },
+      "required": [
+        "annotation"
+      ]
+    },
+    "google.protobuf.GeneratedCodeInfo.Annotation": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "source_file": {
+          "type": "string"
+        },
+        "begin": {
+          "type": "integer"
+        },
+        "end": {
+          "type": "integer"
+        },
+        "semantic": {
+          "$ref": "#/definitions/Semantic"
+        }
+      },
+      "required": [
+        "path",
+        "source_file",
+        "begin",
+        "end",
+        "semantic"
+      ]
+    },
+    "google.protobuf.GeneratedCodeInfo.Annotation.Semantic": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "SET",
+        "ALIAS"
+      ]
+    },
+    "google.protobuf.Duration": {
+      "type": "object",
+      "properties": {
+        "seconds": {
+          "type": "string",
+          "format": "int64"
+        },
+        "nanos": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "seconds",
+        "nanos"
+      ]
+    },
+    "google.protobuf.Empty": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "google.protobuf.Struct": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Value"
+          }
+        }
+      },
+      "required": [
+        "fields"
+      ]
+    },
+    "google.protobuf.Value": {
+      "type": "object",
+      "properties": {
+        "nullValue": {
+          "$ref": "#/definitions/NullValue"
+        },
+        "numberValue": {
+          "type": "number"
+        },
+        "stringValue": {
+          "type": "string"
+        },
+        "boolValue": {
+          "type": "boolean"
+        },
+        "structValue": {
+          "$ref": "#/definitions/Struct"
+        },
+        "listValue": {
+          "$ref": "#/definitions/ListValue"
+        }
+      },
+      "required": [
+        "nullValue",
+        "numberValue",
+        "stringValue",
+        "boolValue",
+        "structValue",
+        "listValue"
+      ]
+    },
+    "google.protobuf.NullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ]
+    },
+    "google.protobuf.ListValue": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Value"
+          }
+        }
+      },
+      "required": [
+        "values"
+      ]
+    },
+    "google.protobuf.Timestamp": {
+      "type": "object",
+      "properties": {
+        "seconds": {
+          "type": "string",
+          "format": "int64"
+        },
+        "nanos": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "seconds",
+        "nanos"
+      ]
+    }
+  }
+}

@@ -1,0 +1,3929 @@
+file {
+  name: "google/api/http.proto"
+  package: "google.api"
+  message_type {
+    name: "Http"
+    field {
+      name: "rules"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.api.HttpRule"
+      json_name: "rules"
+    }
+    field {
+      name: "fully_decode_reserved_expansion"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "fullyDecodeReservedExpansion"
+    }
+  }
+  message_type {
+    name: "HttpRule"
+    field {
+      name: "selector"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "selector"
+    }
+    field {
+      name: "get"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      oneof_index: 0
+      json_name: "get"
+    }
+    field {
+      name: "put"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      oneof_index: 0
+      json_name: "put"
+    }
+    field {
+      name: "post"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      oneof_index: 0
+      json_name: "post"
+    }
+    field {
+      name: "delete"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      oneof_index: 0
+      json_name: "delete"
+    }
+    field {
+      name: "patch"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      oneof_index: 0
+      json_name: "patch"
+    }
+    field {
+      name: "custom"
+      number: 8
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CustomHttpPattern"
+      oneof_index: 0
+      json_name: "custom"
+    }
+    field {
+      name: "body"
+      number: 7
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "body"
+    }
+    field {
+      name: "response_body"
+      number: 12
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "responseBody"
+    }
+    field {
+      name: "additional_bindings"
+      number: 11
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.api.HttpRule"
+      json_name: "additionalBindings"
+    }
+    oneof_decl {
+      name: "pattern"
+    }
+  }
+  message_type {
+    name: "CustomHttpPattern"
+    field {
+      name: "kind"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "kind"
+    }
+    field {
+      name: "path"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "path"
+    }
+  }
+  options {
+    java_package: "com.google.api"
+    java_outer_classname: "HttpProto"
+    java_multiple_files: true
+    go_package: "google.golang.org/genproto/googleapis/api/annotations;annotations"
+    cc_enable_arenas: true
+    objc_class_prefix: "GAPI"
+  }
+  syntax: "proto3"
+}
+file {
+  name: "google/protobuf/descriptor.proto"
+  package: "google.protobuf"
+  message_type {
+    name: "FileDescriptorSet"
+    field {
+      name: "file"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.FileDescriptorProto"
+      json_name: "file"
+    }
+  }
+  message_type {
+    name: "FileDescriptorProto"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "package"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "package"
+    }
+    field {
+      name: "dependency"
+      number: 3
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "dependency"
+    }
+    field {
+      name: "public_dependency"
+      number: 10
+      label: LABEL_REPEATED
+      type: TYPE_INT32
+      json_name: "publicDependency"
+    }
+    field {
+      name: "weak_dependency"
+      number: 11
+      label: LABEL_REPEATED
+      type: TYPE_INT32
+      json_name: "weakDependency"
+    }
+    field {
+      name: "message_type"
+      number: 4
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.DescriptorProto"
+      json_name: "messageType"
+    }
+    field {
+      name: "enum_type"
+      number: 5
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.EnumDescriptorProto"
+      json_name: "enumType"
+    }
+    field {
+      name: "service"
+      number: 6
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.ServiceDescriptorProto"
+      json_name: "service"
+    }
+    field {
+      name: "extension"
+      number: 7
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.FieldDescriptorProto"
+      json_name: "extension"
+    }
+    field {
+      name: "options"
+      number: 8
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.FileOptions"
+      json_name: "options"
+    }
+    field {
+      name: "source_code_info"
+      number: 9
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.SourceCodeInfo"
+      json_name: "sourceCodeInfo"
+    }
+    field {
+      name: "syntax"
+      number: 12
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "syntax"
+    }
+    field {
+      name: "edition"
+      number: 13
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "edition"
+    }
+  }
+  message_type {
+    name: "DescriptorProto"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "field"
+      number: 2
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.FieldDescriptorProto"
+      json_name: "field"
+    }
+    field {
+      name: "extension"
+      number: 6
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.FieldDescriptorProto"
+      json_name: "extension"
+    }
+    field {
+      name: "nested_type"
+      number: 3
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.DescriptorProto"
+      json_name: "nestedType"
+    }
+    field {
+      name: "enum_type"
+      number: 4
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.EnumDescriptorProto"
+      json_name: "enumType"
+    }
+    field {
+      name: "extension_range"
+      number: 5
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.DescriptorProto.ExtensionRange"
+      json_name: "extensionRange"
+    }
+    field {
+      name: "oneof_decl"
+      number: 8
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.OneofDescriptorProto"
+      json_name: "oneofDecl"
+    }
+    field {
+      name: "options"
+      number: 7
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.MessageOptions"
+      json_name: "options"
+    }
+    field {
+      name: "reserved_range"
+      number: 9
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.DescriptorProto.ReservedRange"
+      json_name: "reservedRange"
+    }
+    field {
+      name: "reserved_name"
+      number: 10
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "reservedName"
+    }
+    nested_type {
+      name: "ExtensionRange"
+      field {
+        name: "start"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_INT32
+        json_name: "start"
+      }
+      field {
+        name: "end"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_INT32
+        json_name: "end"
+      }
+      field {
+        name: "options"
+        number: 3
+        label: LABEL_OPTIONAL
+        type: TYPE_MESSAGE
+        type_name: ".google.protobuf.ExtensionRangeOptions"
+        json_name: "options"
+      }
+    }
+    nested_type {
+      name: "ReservedRange"
+      field {
+        name: "start"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_INT32
+        json_name: "start"
+      }
+      field {
+        name: "end"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_INT32
+        json_name: "end"
+      }
+    }
+  }
+  message_type {
+    name: "ExtensionRangeOptions"
+    field {
+      name: "uninterpreted_option"
+      number: 999
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption"
+      json_name: "uninterpretedOption"
+    }
+    extension_range {
+      start: 1000
+      end: 536870912
+    }
+  }
+  message_type {
+    name: "FieldDescriptorProto"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "number"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+      json_name: "number"
+    }
+    field {
+      name: "label"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.protobuf.FieldDescriptorProto.Label"
+      json_name: "label"
+    }
+    field {
+      name: "type"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.protobuf.FieldDescriptorProto.Type"
+      json_name: "type"
+    }
+    field {
+      name: "type_name"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "typeName"
+    }
+    field {
+      name: "extendee"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "extendee"
+    }
+    field {
+      name: "default_value"
+      number: 7
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "defaultValue"
+    }
+    field {
+      name: "oneof_index"
+      number: 9
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+      json_name: "oneofIndex"
+    }
+    field {
+      name: "json_name"
+      number: 10
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "jsonName"
+    }
+    field {
+      name: "options"
+      number: 8
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.FieldOptions"
+      json_name: "options"
+    }
+    field {
+      name: "proto3_optional"
+      number: 17
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "proto3Optional"
+    }
+    enum_type {
+      name: "Type"
+      value {
+        name: "TYPE_DOUBLE"
+        number: 1
+      }
+      value {
+        name: "TYPE_FLOAT"
+        number: 2
+      }
+      value {
+        name: "TYPE_INT64"
+        number: 3
+      }
+      value {
+        name: "TYPE_UINT64"
+        number: 4
+      }
+      value {
+        name: "TYPE_INT32"
+        number: 5
+      }
+      value {
+        name: "TYPE_FIXED64"
+        number: 6
+      }
+      value {
+        name: "TYPE_FIXED32"
+        number: 7
+      }
+      value {
+        name: "TYPE_BOOL"
+        number: 8
+      }
+      value {
+        name: "TYPE_STRING"
+        number: 9
+      }
+      value {
+        name: "TYPE_GROUP"
+        number: 10
+      }
+      value {
+        name: "TYPE_MESSAGE"
+        number: 11
+      }
+      value {
+        name: "TYPE_BYTES"
+        number: 12
+      }
+      value {
+        name: "TYPE_UINT32"
+        number: 13
+      }
+      value {
+        name: "TYPE_ENUM"
+        number: 14
+      }
+      value {
+        name: "TYPE_SFIXED32"
+        number: 15
+      }
+      value {
+        name: "TYPE_SFIXED64"
+        number: 16
+      }
+      value {
+        name: "TYPE_SINT32"
+        number: 17
+      }
+      value {
+        name: "TYPE_SINT64"
+        number: 18
+      }
+    }
+    enum_type {
+      name: "Label"
+      value {
+        name: "LABEL_OPTIONAL"
+        number: 1
+      }
+      value {
+        name: "LABEL_REQUIRED"
+        number: 2
+      }
+      value {
+        name: "LABEL_REPEATED"
+        number: 3
+      }
+    }
+  }
+  message_type {
+    name: "OneofDescriptorProto"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "options"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.OneofOptions"
+      json_name: "options"
+    }
+  }
+  message_type {
+    name: "EnumDescriptorProto"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "value"
+      number: 2
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.EnumValueDescriptorProto"
+      json_name: "value"
+    }
+    field {
+      name: "options"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.EnumOptions"
+      json_name: "options"
+    }
+    field {
+      name: "reserved_range"
+      number: 4
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.EnumDescriptorProto.EnumReservedRange"
+      json_name: "reservedRange"
+    }
+    field {
+      name: "reserved_name"
+      number: 5
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "reservedName"
+    }
+    nested_type {
+      name: "EnumReservedRange"
+      field {
+        name: "start"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_INT32
+        json_name: "start"
+      }
+      field {
+        name: "end"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_INT32
+        json_name: "end"
+      }
+    }
+  }
+  message_type {
+    name: "EnumValueDescriptorProto"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "number"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+      json_name: "number"
+    }
+    field {
+      name: "options"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.EnumValueOptions"
+      json_name: "options"
+    }
+  }
+  message_type {
+    name: "ServiceDescriptorProto"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "method"
+      number: 2
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.MethodDescriptorProto"
+      json_name: "method"
+    }
+    field {
+      name: "options"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.ServiceOptions"
+      json_name: "options"
+    }
+  }
+  message_type {
+    name: "MethodDescriptorProto"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "input_type"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "inputType"
+    }
+    field {
+      name: "output_type"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "outputType"
+    }
+    field {
+      name: "options"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.MethodOptions"
+      json_name: "options"
+    }
+    field {
+      name: "client_streaming"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "clientStreaming"
+    }
+    field {
+      name: "server_streaming"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "serverStreaming"
+    }
+  }
+  message_type {
+    name: "FileOptions"
+    field {
+      name: "java_package"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "javaPackage"
+    }
+    field {
+      name: "java_outer_classname"
+      number: 8
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "javaOuterClassname"
+    }
+    field {
+      name: "java_multiple_files"
+      number: 10
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "javaMultipleFiles"
+    }
+    field {
+      name: "java_generate_equals_and_hash"
+      number: 20
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      options {
+        deprecated: true
+      }
+      json_name: "javaGenerateEqualsAndHash"
+    }
+    field {
+      name: "java_string_check_utf8"
+      number: 27
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "javaStringCheckUtf8"
+    }
+    field {
+      name: "optimize_for"
+      number: 9
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.protobuf.FileOptions.OptimizeMode"
+      default_value: "SPEED"
+      json_name: "optimizeFor"
+    }
+    field {
+      name: "go_package"
+      number: 11
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "goPackage"
+    }
+    field {
+      name: "cc_generic_services"
+      number: 16
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "ccGenericServices"
+    }
+    field {
+      name: "java_generic_services"
+      number: 17
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "javaGenericServices"
+    }
+    field {
+      name: "py_generic_services"
+      number: 18
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "pyGenericServices"
+    }
+    field {
+      name: "php_generic_services"
+      number: 42
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "phpGenericServices"
+    }
+    field {
+      name: "deprecated"
+      number: 23
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "deprecated"
+    }
+    field {
+      name: "cc_enable_arenas"
+      number: 31
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "true"
+      json_name: "ccEnableArenas"
+    }
+    field {
+      name: "objc_class_prefix"
+      number: 36
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "objcClassPrefix"
+    }
+    field {
+      name: "csharp_namespace"
+      number: 37
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "csharpNamespace"
+    }
+    field {
+      name: "swift_prefix"
+      number: 39
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "swiftPrefix"
+    }
+    field {
+      name: "php_class_prefix"
+      number: 40
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "phpClassPrefix"
+    }
+    field {
+      name: "php_namespace"
+      number: 41
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "phpNamespace"
+    }
+    field {
+      name: "php_metadata_namespace"
+      number: 44
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "phpMetadataNamespace"
+    }
+    field {
+      name: "ruby_package"
+      number: 45
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "rubyPackage"
+    }
+    field {
+      name: "uninterpreted_option"
+      number: 999
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption"
+      json_name: "uninterpretedOption"
+    }
+    enum_type {
+      name: "OptimizeMode"
+      value {
+        name: "SPEED"
+        number: 1
+      }
+      value {
+        name: "CODE_SIZE"
+        number: 2
+      }
+      value {
+        name: "LITE_RUNTIME"
+        number: 3
+      }
+    }
+    extension_range {
+      start: 1000
+      end: 536870912
+    }
+    reserved_range {
+      start: 38
+      end: 39
+    }
+  }
+  message_type {
+    name: "MessageOptions"
+    field {
+      name: "message_set_wire_format"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "messageSetWireFormat"
+    }
+    field {
+      name: "no_standard_descriptor_accessor"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "noStandardDescriptorAccessor"
+    }
+    field {
+      name: "deprecated"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "deprecated"
+    }
+    field {
+      name: "map_entry"
+      number: 7
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "mapEntry"
+    }
+    field {
+      name: "deprecated_legacy_json_field_conflicts"
+      number: 11
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      options {
+        deprecated: true
+      }
+      json_name: "deprecatedLegacyJsonFieldConflicts"
+    }
+    field {
+      name: "uninterpreted_option"
+      number: 999
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption"
+      json_name: "uninterpretedOption"
+    }
+    extension_range {
+      start: 1000
+      end: 536870912
+    }
+    reserved_range {
+      start: 4
+      end: 5
+    }
+    reserved_range {
+      start: 5
+      end: 6
+    }
+    reserved_range {
+      start: 6
+      end: 7
+    }
+    reserved_range {
+      start: 8
+      end: 9
+    }
+    reserved_range {
+      start: 9
+      end: 10
+    }
+  }
+  message_type {
+    name: "FieldOptions"
+    field {
+      name: "ctype"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.protobuf.FieldOptions.CType"
+      default_value: "STRING"
+      json_name: "ctype"
+    }
+    field {
+      name: "packed"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "packed"
+    }
+    field {
+      name: "jstype"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.protobuf.FieldOptions.JSType"
+      default_value: "JS_NORMAL"
+      json_name: "jstype"
+    }
+    field {
+      name: "lazy"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "lazy"
+    }
+    field {
+      name: "unverified_lazy"
+      number: 15
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "unverifiedLazy"
+    }
+    field {
+      name: "deprecated"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "deprecated"
+    }
+    field {
+      name: "weak"
+      number: 10
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "weak"
+    }
+    field {
+      name: "debug_redact"
+      number: 16
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "debugRedact"
+    }
+    field {
+      name: "retention"
+      number: 17
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.protobuf.FieldOptions.OptionRetention"
+      json_name: "retention"
+    }
+    field {
+      name: "target"
+      number: 18
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.protobuf.FieldOptions.OptionTargetType"
+      json_name: "target"
+    }
+    field {
+      name: "uninterpreted_option"
+      number: 999
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption"
+      json_name: "uninterpretedOption"
+    }
+    enum_type {
+      name: "CType"
+      value {
+        name: "STRING"
+        number: 0
+      }
+      value {
+        name: "CORD"
+        number: 1
+      }
+      value {
+        name: "STRING_PIECE"
+        number: 2
+      }
+    }
+    enum_type {
+      name: "JSType"
+      value {
+        name: "JS_NORMAL"
+        number: 0
+      }
+      value {
+        name: "JS_STRING"
+        number: 1
+      }
+      value {
+        name: "JS_NUMBER"
+        number: 2
+      }
+    }
+    enum_type {
+      name: "OptionRetention"
+      value {
+        name: "RETENTION_UNKNOWN"
+        number: 0
+      }
+      value {
+        name: "RETENTION_RUNTIME"
+        number: 1
+      }
+      value {
+        name: "RETENTION_SOURCE"
+        number: 2
+      }
+    }
+    enum_type {
+      name: "OptionTargetType"
+      value {
+        name: "TARGET_TYPE_UNKNOWN"
+        number: 0
+      }
+      value {
+        name: "TARGET_TYPE_FILE"
+        number: 1
+      }
+      value {
+        name: "TARGET_TYPE_EXTENSION_RANGE"
+        number: 2
+      }
+      value {
+        name: "TARGET_TYPE_MESSAGE"
+        number: 3
+      }
+      value {
+        name: "TARGET_TYPE_FIELD"
+        number: 4
+      }
+      value {
+        name: "TARGET_TYPE_ONEOF"
+        number: 5
+      }
+      value {
+        name: "TARGET_TYPE_ENUM"
+        number: 6
+      }
+      value {
+        name: "TARGET_TYPE_ENUM_ENTRY"
+        number: 7
+      }
+      value {
+        name: "TARGET_TYPE_SERVICE"
+        number: 8
+      }
+      value {
+        name: "TARGET_TYPE_METHOD"
+        number: 9
+      }
+    }
+    extension_range {
+      start: 1000
+      end: 536870912
+    }
+    reserved_range {
+      start: 4
+      end: 5
+    }
+  }
+  message_type {
+    name: "OneofOptions"
+    field {
+      name: "uninterpreted_option"
+      number: 999
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption"
+      json_name: "uninterpretedOption"
+    }
+    extension_range {
+      start: 1000
+      end: 536870912
+    }
+  }
+  message_type {
+    name: "EnumOptions"
+    field {
+      name: "allow_alias"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "allowAlias"
+    }
+    field {
+      name: "deprecated"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "deprecated"
+    }
+    field {
+      name: "deprecated_legacy_json_field_conflicts"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      options {
+        deprecated: true
+      }
+      json_name: "deprecatedLegacyJsonFieldConflicts"
+    }
+    field {
+      name: "uninterpreted_option"
+      number: 999
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption"
+      json_name: "uninterpretedOption"
+    }
+    extension_range {
+      start: 1000
+      end: 536870912
+    }
+    reserved_range {
+      start: 5
+      end: 6
+    }
+  }
+  message_type {
+    name: "EnumValueOptions"
+    field {
+      name: "deprecated"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "deprecated"
+    }
+    field {
+      name: "uninterpreted_option"
+      number: 999
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption"
+      json_name: "uninterpretedOption"
+    }
+    extension_range {
+      start: 1000
+      end: 536870912
+    }
+  }
+  message_type {
+    name: "ServiceOptions"
+    field {
+      name: "deprecated"
+      number: 33
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "deprecated"
+    }
+    field {
+      name: "uninterpreted_option"
+      number: 999
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption"
+      json_name: "uninterpretedOption"
+    }
+    extension_range {
+      start: 1000
+      end: 536870912
+    }
+  }
+  message_type {
+    name: "MethodOptions"
+    field {
+      name: "deprecated"
+      number: 33
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      default_value: "false"
+      json_name: "deprecated"
+    }
+    field {
+      name: "idempotency_level"
+      number: 34
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.protobuf.MethodOptions.IdempotencyLevel"
+      default_value: "IDEMPOTENCY_UNKNOWN"
+      json_name: "idempotencyLevel"
+    }
+    field {
+      name: "uninterpreted_option"
+      number: 999
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption"
+      json_name: "uninterpretedOption"
+    }
+    enum_type {
+      name: "IdempotencyLevel"
+      value {
+        name: "IDEMPOTENCY_UNKNOWN"
+        number: 0
+      }
+      value {
+        name: "NO_SIDE_EFFECTS"
+        number: 1
+      }
+      value {
+        name: "IDEMPOTENT"
+        number: 2
+      }
+    }
+    extension_range {
+      start: 1000
+      end: 536870912
+    }
+  }
+  message_type {
+    name: "UninterpretedOption"
+    field {
+      name: "name"
+      number: 2
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.UninterpretedOption.NamePart"
+      json_name: "name"
+    }
+    field {
+      name: "identifier_value"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "identifierValue"
+    }
+    field {
+      name: "positive_int_value"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_UINT64
+      json_name: "positiveIntValue"
+    }
+    field {
+      name: "negative_int_value"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_INT64
+      json_name: "negativeIntValue"
+    }
+    field {
+      name: "double_value"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_DOUBLE
+      json_name: "doubleValue"
+    }
+    field {
+      name: "string_value"
+      number: 7
+      label: LABEL_OPTIONAL
+      type: TYPE_BYTES
+      json_name: "stringValue"
+    }
+    field {
+      name: "aggregate_value"
+      number: 8
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "aggregateValue"
+    }
+    nested_type {
+      name: "NamePart"
+      field {
+        name: "name_part"
+        number: 1
+        label: LABEL_REQUIRED
+        type: TYPE_STRING
+        json_name: "namePart"
+      }
+      field {
+        name: "is_extension"
+        number: 2
+        label: LABEL_REQUIRED
+        type: TYPE_BOOL
+        json_name: "isExtension"
+      }
+    }
+  }
+  message_type {
+    name: "SourceCodeInfo"
+    field {
+      name: "location"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.SourceCodeInfo.Location"
+      json_name: "location"
+    }
+    nested_type {
+      name: "Location"
+      field {
+        name: "path"
+        number: 1
+        label: LABEL_REPEATED
+        type: TYPE_INT32
+        options {
+          packed: true
+        }
+        json_name: "path"
+      }
+      field {
+        name: "span"
+        number: 2
+        label: LABEL_REPEATED
+        type: TYPE_INT32
+        options {
+          packed: true
+        }
+        json_name: "span"
+      }
+      field {
+        name: "leading_comments"
+        number: 3
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "leadingComments"
+      }
+      field {
+        name: "trailing_comments"
+        number: 4
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "trailingComments"
+      }
+      field {
+        name: "leading_detached_comments"
+        number: 6
+        label: LABEL_REPEATED
+        type: TYPE_STRING
+        json_name: "leadingDetachedComments"
+      }
+    }
+  }
+  message_type {
+    name: "GeneratedCodeInfo"
+    field {
+      name: "annotation"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.GeneratedCodeInfo.Annotation"
+      json_name: "annotation"
+    }
+    nested_type {
+      name: "Annotation"
+      field {
+        name: "path"
+        number: 1
+        label: LABEL_REPEATED
+        type: TYPE_INT32
+        options {
+          packed: true
+        }
+        json_name: "path"
+      }
+      field {
+        name: "source_file"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "sourceFile"
+      }
+      field {
+        name: "begin"
+        number: 3
+        label: LABEL_OPTIONAL
+        type: TYPE_INT32
+        json_name: "begin"
+      }
+      field {
+        name: "end"
+        number: 4
+        label: LABEL_OPTIONAL
+        type: TYPE_INT32
+        json_name: "end"
+      }
+      field {
+        name: "semantic"
+        number: 5
+        label: LABEL_OPTIONAL
+        type: TYPE_ENUM
+        type_name: ".google.protobuf.GeneratedCodeInfo.Annotation.Semantic"
+        json_name: "semantic"
+      }
+      enum_type {
+        name: "Semantic"
+        value {
+          name: "NONE"
+          number: 0
+        }
+        value {
+          name: "SET"
+          number: 1
+        }
+        value {
+          name: "ALIAS"
+          number: 2
+        }
+      }
+    }
+  }
+  options {
+    java_package: "com.google.protobuf"
+    java_outer_classname: "DescriptorProtos"
+    optimize_for: SPEED
+    go_package: "google.golang.org/protobuf/types/descriptorpb"
+    cc_enable_arenas: true
+    objc_class_prefix: "GPB"
+    csharp_namespace: "Google.Protobuf.Reflection"
+  }
+}
+file {
+  name: "google/api/annotations.proto"
+  package: "google.api"
+  dependency: "google/api/http.proto"
+  dependency: "google/protobuf/descriptor.proto"
+  extension {
+    name: "http"
+    extendee: ".google.protobuf.MethodOptions"
+    number: 72295728
+    label: LABEL_OPTIONAL
+    type: TYPE_MESSAGE
+    type_name: ".google.api.HttpRule"
+    json_name: "http"
+  }
+  options {
+    java_package: "com.google.api"
+    java_outer_classname: "AnnotationsProto"
+    java_multiple_files: true
+    go_package: "google.golang.org/genproto/googleapis/api/annotations;annotations"
+    objc_class_prefix: "GAPI"
+  }
+  syntax: "proto3"
+}
+file {
+  name: "google/api/launch_stage.proto"
+  package: "google.api"
+  enum_type {
+    name: "LaunchStage"
+    value {
+      name: "LAUNCH_STAGE_UNSPECIFIED"
+      number: 0
+    }
+    value {
+      name: "UNIMPLEMENTED"
+      number: 6
+    }
+    value {
+      name: "PRELAUNCH"
+      number: 7
+    }
+    value {
+      name: "EARLY_ACCESS"
+      number: 1
+    }
+    value {
+      name: "ALPHA"
+      number: 2
+    }
+    value {
+      name: "BETA"
+      number: 3
+    }
+    value {
+      name: "GA"
+      number: 4
+    }
+    value {
+      name: "DEPRECATED"
+      number: 5
+    }
+  }
+  options {
+    java_package: "com.google.api"
+    java_outer_classname: "LaunchStageProto"
+    java_multiple_files: true
+    go_package: "google.golang.org/genproto/googleapis/api;api"
+    objc_class_prefix: "GAPI"
+  }
+  syntax: "proto3"
+}
+file {
+  name: "google/protobuf/duration.proto"
+  package: "google.protobuf"
+  message_type {
+    name: "Duration"
+    field {
+      name: "seconds"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_INT64
+      json_name: "seconds"
+    }
+    field {
+      name: "nanos"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+      json_name: "nanos"
+    }
+  }
+  options {
+    java_package: "com.google.protobuf"
+    java_outer_classname: "DurationProto"
+    java_multiple_files: true
+    go_package: "google.golang.org/protobuf/types/known/durationpb"
+    cc_enable_arenas: true
+    objc_class_prefix: "GPB"
+    csharp_namespace: "Google.Protobuf.WellKnownTypes"
+  }
+  syntax: "proto3"
+}
+file {
+  name: "google/api/client.proto"
+  package: "google.api"
+  dependency: "google/api/launch_stage.proto"
+  dependency: "google/protobuf/descriptor.proto"
+  dependency: "google/protobuf/duration.proto"
+  message_type {
+    name: "CommonLanguageSettings"
+    field {
+      name: "reference_docs_uri"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      options {
+        deprecated: true
+      }
+      json_name: "referenceDocsUri"
+    }
+    field {
+      name: "destinations"
+      number: 2
+      label: LABEL_REPEATED
+      type: TYPE_ENUM
+      type_name: ".google.api.ClientLibraryDestination"
+      json_name: "destinations"
+    }
+  }
+  message_type {
+    name: "ClientLibrarySettings"
+    field {
+      name: "version"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "version"
+    }
+    field {
+      name: "launch_stage"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.api.LaunchStage"
+      json_name: "launchStage"
+    }
+    field {
+      name: "rest_numeric_enums"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "restNumericEnums"
+    }
+    field {
+      name: "java_settings"
+      number: 21
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.JavaSettings"
+      json_name: "javaSettings"
+    }
+    field {
+      name: "cpp_settings"
+      number: 22
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CppSettings"
+      json_name: "cppSettings"
+    }
+    field {
+      name: "php_settings"
+      number: 23
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.PhpSettings"
+      json_name: "phpSettings"
+    }
+    field {
+      name: "python_settings"
+      number: 24
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.PythonSettings"
+      json_name: "pythonSettings"
+    }
+    field {
+      name: "node_settings"
+      number: 25
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.NodeSettings"
+      json_name: "nodeSettings"
+    }
+    field {
+      name: "dotnet_settings"
+      number: 26
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.DotnetSettings"
+      json_name: "dotnetSettings"
+    }
+    field {
+      name: "ruby_settings"
+      number: 27
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.RubySettings"
+      json_name: "rubySettings"
+    }
+    field {
+      name: "go_settings"
+      number: 28
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.GoSettings"
+      json_name: "goSettings"
+    }
+  }
+  message_type {
+    name: "Publishing"
+    field {
+      name: "method_settings"
+      number: 2
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.api.MethodSettings"
+      json_name: "methodSettings"
+    }
+    field {
+      name: "new_issue_uri"
+      number: 101
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "newIssueUri"
+    }
+    field {
+      name: "documentation_uri"
+      number: 102
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "documentationUri"
+    }
+    field {
+      name: "api_short_name"
+      number: 103
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "apiShortName"
+    }
+    field {
+      name: "github_label"
+      number: 104
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "githubLabel"
+    }
+    field {
+      name: "codeowner_github_teams"
+      number: 105
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "codeownerGithubTeams"
+    }
+    field {
+      name: "doc_tag_prefix"
+      number: 106
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "docTagPrefix"
+    }
+    field {
+      name: "organization"
+      number: 107
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.api.ClientLibraryOrganization"
+      json_name: "organization"
+    }
+    field {
+      name: "library_settings"
+      number: 109
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.api.ClientLibrarySettings"
+      json_name: "librarySettings"
+    }
+  }
+  message_type {
+    name: "JavaSettings"
+    field {
+      name: "library_package"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "libraryPackage"
+    }
+    field {
+      name: "service_class_names"
+      number: 2
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.api.JavaSettings.ServiceClassNamesEntry"
+      json_name: "serviceClassNames"
+    }
+    field {
+      name: "common"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CommonLanguageSettings"
+      json_name: "common"
+    }
+    nested_type {
+      name: "ServiceClassNamesEntry"
+      field {
+        name: "key"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "key"
+      }
+      field {
+        name: "value"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "value"
+      }
+      options {
+        map_entry: true
+      }
+    }
+  }
+  message_type {
+    name: "CppSettings"
+    field {
+      name: "common"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CommonLanguageSettings"
+      json_name: "common"
+    }
+  }
+  message_type {
+    name: "PhpSettings"
+    field {
+      name: "common"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CommonLanguageSettings"
+      json_name: "common"
+    }
+  }
+  message_type {
+    name: "PythonSettings"
+    field {
+      name: "common"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CommonLanguageSettings"
+      json_name: "common"
+    }
+  }
+  message_type {
+    name: "NodeSettings"
+    field {
+      name: "common"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CommonLanguageSettings"
+      json_name: "common"
+    }
+  }
+  message_type {
+    name: "DotnetSettings"
+    field {
+      name: "common"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CommonLanguageSettings"
+      json_name: "common"
+    }
+  }
+  message_type {
+    name: "RubySettings"
+    field {
+      name: "common"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CommonLanguageSettings"
+      json_name: "common"
+    }
+  }
+  message_type {
+    name: "GoSettings"
+    field {
+      name: "common"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.CommonLanguageSettings"
+      json_name: "common"
+    }
+  }
+  message_type {
+    name: "MethodSettings"
+    field {
+      name: "selector"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "selector"
+    }
+    field {
+      name: "long_running"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.api.MethodSettings.LongRunning"
+      json_name: "longRunning"
+    }
+    nested_type {
+      name: "LongRunning"
+      field {
+        name: "initial_poll_delay"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_MESSAGE
+        type_name: ".google.protobuf.Duration"
+        json_name: "initialPollDelay"
+      }
+      field {
+        name: "poll_delay_multiplier"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_FLOAT
+        json_name: "pollDelayMultiplier"
+      }
+      field {
+        name: "max_poll_delay"
+        number: 3
+        label: LABEL_OPTIONAL
+        type: TYPE_MESSAGE
+        type_name: ".google.protobuf.Duration"
+        json_name: "maxPollDelay"
+      }
+      field {
+        name: "total_poll_timeout"
+        number: 4
+        label: LABEL_OPTIONAL
+        type: TYPE_MESSAGE
+        type_name: ".google.protobuf.Duration"
+        json_name: "totalPollTimeout"
+      }
+    }
+  }
+  enum_type {
+    name: "ClientLibraryOrganization"
+    value {
+      name: "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED"
+      number: 0
+    }
+    value {
+      name: "CLOUD"
+      number: 1
+    }
+    value {
+      name: "ADS"
+      number: 2
+    }
+    value {
+      name: "PHOTOS"
+      number: 3
+    }
+    value {
+      name: "STREET_VIEW"
+      number: 4
+    }
+  }
+  enum_type {
+    name: "ClientLibraryDestination"
+    value {
+      name: "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED"
+      number: 0
+    }
+    value {
+      name: "GITHUB"
+      number: 10
+    }
+    value {
+      name: "PACKAGE_MANAGER"
+      number: 20
+    }
+  }
+  extension {
+    name: "method_signature"
+    extendee: ".google.protobuf.MethodOptions"
+    number: 1051
+    label: LABEL_REPEATED
+    type: TYPE_STRING
+    json_name: "methodSignature"
+  }
+  extension {
+    name: "default_host"
+    extendee: ".google.protobuf.ServiceOptions"
+    number: 1049
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+    json_name: "defaultHost"
+  }
+  extension {
+    name: "oauth_scopes"
+    extendee: ".google.protobuf.ServiceOptions"
+    number: 1050
+    label: LABEL_OPTIONAL
+    type: TYPE_STRING
+    json_name: "oauthScopes"
+  }
+  options {
+    java_package: "com.google.api"
+    java_outer_classname: "ClientProto"
+    java_multiple_files: true
+    go_package: "google.golang.org/genproto/googleapis/api/annotations;annotations"
+    objc_class_prefix: "GAPI"
+  }
+  syntax: "proto3"
+}
+file {
+  name: "google/api/field_behavior.proto"
+  package: "google.api"
+  dependency: "google/protobuf/descriptor.proto"
+  enum_type {
+    name: "FieldBehavior"
+    value {
+      name: "FIELD_BEHAVIOR_UNSPECIFIED"
+      number: 0
+    }
+    value {
+      name: "OPTIONAL"
+      number: 1
+    }
+    value {
+      name: "REQUIRED"
+      number: 2
+    }
+    value {
+      name: "OUTPUT_ONLY"
+      number: 3
+    }
+    value {
+      name: "INPUT_ONLY"
+      number: 4
+    }
+    value {
+      name: "IMMUTABLE"
+      number: 5
+    }
+    value {
+      name: "UNORDERED_LIST"
+      number: 6
+    }
+    value {
+      name: "NON_EMPTY_DEFAULT"
+      number: 7
+    }
+  }
+  extension {
+    name: "field_behavior"
+    extendee: ".google.protobuf.FieldOptions"
+    number: 1052
+    label: LABEL_REPEATED
+    type: TYPE_ENUM
+    type_name: ".google.api.FieldBehavior"
+    json_name: "fieldBehavior"
+  }
+  options {
+    java_package: "com.google.api"
+    java_outer_classname: "FieldBehaviorProto"
+    java_multiple_files: true
+    go_package: "google.golang.org/genproto/googleapis/api/annotations;annotations"
+    objc_class_prefix: "GAPI"
+  }
+  syntax: "proto3"
+}
+file {
+  name: "google/protobuf/empty.proto"
+  package: "google.protobuf"
+  message_type {
+    name: "Empty"
+  }
+  options {
+    java_package: "com.google.protobuf"
+    java_outer_classname: "EmptyProto"
+    java_multiple_files: true
+    go_package: "google.golang.org/protobuf/types/known/emptypb"
+    cc_enable_arenas: true
+    objc_class_prefix: "GPB"
+    csharp_namespace: "Google.Protobuf.WellKnownTypes"
+  }
+  syntax: "proto3"
+}
+file {
+  name: "google/protobuf/struct.proto"
+  package: "google.protobuf"
+  message_type {
+    name: "Struct"
+    field {
+      name: "fields"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct.FieldsEntry"
+      json_name: "fields"
+    }
+    nested_type {
+      name: "FieldsEntry"
+      field {
+        name: "key"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "key"
+      }
+      field {
+        name: "value"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_MESSAGE
+        type_name: ".google.protobuf.Value"
+        json_name: "value"
+      }
+      options {
+        map_entry: true
+      }
+    }
+  }
+  message_type {
+    name: "Value"
+    field {
+      name: "null_value"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".google.protobuf.NullValue"
+      oneof_index: 0
+      json_name: "nullValue"
+    }
+    field {
+      name: "number_value"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_DOUBLE
+      oneof_index: 0
+      json_name: "numberValue"
+    }
+    field {
+      name: "string_value"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      oneof_index: 0
+      json_name: "stringValue"
+    }
+    field {
+      name: "bool_value"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      oneof_index: 0
+      json_name: "boolValue"
+    }
+    field {
+      name: "struct_value"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      oneof_index: 0
+      json_name: "structValue"
+    }
+    field {
+      name: "list_value"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.ListValue"
+      oneof_index: 0
+      json_name: "listValue"
+    }
+    oneof_decl {
+      name: "kind"
+    }
+  }
+  message_type {
+    name: "ListValue"
+    field {
+      name: "values"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Value"
+      json_name: "values"
+    }
+  }
+  enum_type {
+    name: "NullValue"
+    value {
+      name: "NULL_VALUE"
+      number: 0
+    }
+  }
+  options {
+    java_package: "com.google.protobuf"
+    java_outer_classname: "StructProto"
+    java_multiple_files: true
+    go_package: "google.golang.org/protobuf/types/known/structpb"
+    cc_enable_arenas: true
+    objc_class_prefix: "GPB"
+    csharp_namespace: "Google.Protobuf.WellKnownTypes"
+  }
+  syntax: "proto3"
+}
+file {
+  name: "google/protobuf/timestamp.proto"
+  package: "google.protobuf"
+  message_type {
+    name: "Timestamp"
+    field {
+      name: "seconds"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_INT64
+      json_name: "seconds"
+    }
+    field {
+      name: "nanos"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+      json_name: "nanos"
+    }
+  }
+  options {
+    java_package: "com.google.protobuf"
+    java_outer_classname: "TimestampProto"
+    java_multiple_files: true
+    go_package: "google.golang.org/protobuf/types/known/timestamppb"
+    cc_enable_arenas: true
+    objc_class_prefix: "GPB"
+    csharp_namespace: "Google.Protobuf.WellKnownTypes"
+  }
+  syntax: "proto3"
+}
+file {
+  name: "a2a.proto"
+  package: "a2a.v1"
+  dependency: "google/api/annotations.proto"
+  dependency: "google/api/client.proto"
+  dependency: "google/api/field_behavior.proto"
+  dependency: "google/protobuf/empty.proto"
+  dependency: "google/protobuf/struct.proto"
+  dependency: "google/protobuf/timestamp.proto"
+  message_type {
+    name: "SendMessageConfiguration"
+    field {
+      name: "accepted_output_modes"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "acceptedOutputModes"
+    }
+    field {
+      name: "push_notification"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.PushNotificationConfig"
+      json_name: "pushNotification"
+    }
+    field {
+      name: "history_length"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+      json_name: "historyLength"
+    }
+    field {
+      name: "blocking"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "blocking"
+    }
+  }
+  message_type {
+    name: "Task"
+    field {
+      name: "id"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "id"
+    }
+    field {
+      name: "context_id"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "contextId"
+    }
+    field {
+      name: "status"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.TaskStatus"
+      json_name: "status"
+    }
+    field {
+      name: "artifacts"
+      number: 4
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Artifact"
+      json_name: "artifacts"
+    }
+    field {
+      name: "history"
+      number: 5
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Message"
+      json_name: "history"
+    }
+    field {
+      name: "metadata"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "metadata"
+    }
+  }
+  message_type {
+    name: "TaskStatus"
+    field {
+      name: "state"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".a2a.v1.TaskState"
+      json_name: "state"
+    }
+    field {
+      name: "update"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Message"
+      json_name: "message"
+    }
+    field {
+      name: "timestamp"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Timestamp"
+      json_name: "timestamp"
+    }
+  }
+  message_type {
+    name: "Part"
+    field {
+      name: "text"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      oneof_index: 0
+      json_name: "text"
+    }
+    field {
+      name: "file"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.FilePart"
+      oneof_index: 0
+      json_name: "file"
+    }
+    field {
+      name: "data"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.DataPart"
+      oneof_index: 0
+      json_name: "data"
+    }
+    field {
+      name: "metadata"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "metadata"
+    }
+    oneof_decl {
+      name: "part"
+    }
+  }
+  message_type {
+    name: "FilePart"
+    field {
+      name: "file_with_uri"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      oneof_index: 0
+      json_name: "fileWithUri"
+    }
+    field {
+      name: "file_with_bytes"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_BYTES
+      oneof_index: 0
+      json_name: "fileWithBytes"
+    }
+    field {
+      name: "mime_type"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "mimeType"
+    }
+    field {
+      name: "name"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    oneof_decl {
+      name: "file"
+    }
+  }
+  message_type {
+    name: "DataPart"
+    field {
+      name: "data"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "data"
+    }
+  }
+  message_type {
+    name: "Message"
+    field {
+      name: "message_id"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "messageId"
+    }
+    field {
+      name: "context_id"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "contextId"
+    }
+    field {
+      name: "task_id"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "taskId"
+    }
+    field {
+      name: "role"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_ENUM
+      type_name: ".a2a.v1.Role"
+      json_name: "role"
+    }
+    field {
+      name: "content"
+      number: 5
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Part"
+      json_name: "content"
+    }
+    field {
+      name: "metadata"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "metadata"
+    }
+    field {
+      name: "extensions"
+      number: 7
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "extensions"
+    }
+  }
+  message_type {
+    name: "Artifact"
+    field {
+      name: "artifact_id"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "artifactId"
+    }
+    field {
+      name: "name"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "description"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "description"
+    }
+    field {
+      name: "parts"
+      number: 5
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Part"
+      json_name: "parts"
+    }
+    field {
+      name: "metadata"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "metadata"
+    }
+    field {
+      name: "extensions"
+      number: 7
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "extensions"
+    }
+  }
+  message_type {
+    name: "TaskStatusUpdateEvent"
+    field {
+      name: "task_id"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "taskId"
+    }
+    field {
+      name: "context_id"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "contextId"
+    }
+    field {
+      name: "status"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.TaskStatus"
+      json_name: "status"
+    }
+    field {
+      name: "final"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "final"
+    }
+    field {
+      name: "metadata"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "metadata"
+    }
+  }
+  message_type {
+    name: "TaskArtifactUpdateEvent"
+    field {
+      name: "task_id"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "taskId"
+    }
+    field {
+      name: "context_id"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "contextId"
+    }
+    field {
+      name: "artifact"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Artifact"
+      json_name: "artifact"
+    }
+    field {
+      name: "append"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "append"
+    }
+    field {
+      name: "last_chunk"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "lastChunk"
+    }
+    field {
+      name: "metadata"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "metadata"
+    }
+  }
+  message_type {
+    name: "PushNotificationConfig"
+    field {
+      name: "id"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "id"
+    }
+    field {
+      name: "url"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "url"
+    }
+    field {
+      name: "token"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "token"
+    }
+    field {
+      name: "authentication"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AuthenticationInfo"
+      json_name: "authentication"
+    }
+  }
+  message_type {
+    name: "AuthenticationInfo"
+    field {
+      name: "schemes"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "schemes"
+    }
+    field {
+      name: "credentials"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "credentials"
+    }
+  }
+  message_type {
+    name: "AgentInterface"
+    field {
+      name: "url"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "url"
+    }
+    field {
+      name: "transport"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "transport"
+    }
+  }
+  message_type {
+    name: "AgentCard"
+    field {
+      name: "protocol_version"
+      number: 16
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "protocolVersion"
+    }
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "description"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "description"
+    }
+    field {
+      name: "url"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "url"
+    }
+    field {
+      name: "preferred_transport"
+      number: 14
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "preferredTransport"
+    }
+    field {
+      name: "additional_interfaces"
+      number: 15
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AgentInterface"
+      json_name: "additionalInterfaces"
+    }
+    field {
+      name: "provider"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AgentProvider"
+      json_name: "provider"
+    }
+    field {
+      name: "version"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "version"
+    }
+    field {
+      name: "documentation_url"
+      number: 6
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "documentationUrl"
+    }
+    field {
+      name: "capabilities"
+      number: 7
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AgentCapabilities"
+      json_name: "capabilities"
+    }
+    field {
+      name: "security_schemes"
+      number: 8
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AgentCard.SecuritySchemesEntry"
+      json_name: "securitySchemes"
+    }
+    field {
+      name: "security"
+      number: 9
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Security"
+      json_name: "security"
+    }
+    field {
+      name: "default_input_modes"
+      number: 10
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "defaultInputModes"
+    }
+    field {
+      name: "default_output_modes"
+      number: 11
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "defaultOutputModes"
+    }
+    field {
+      name: "skills"
+      number: 12
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AgentSkill"
+      json_name: "skills"
+    }
+    field {
+      name: "supports_authenticated_extended_card"
+      number: 13
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "supportsAuthenticatedExtendedCard"
+    }
+    field {
+      name: "signatures"
+      number: 17
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AgentCardSignature"
+      json_name: "signatures"
+    }
+    field {
+      name: "icon_url"
+      number: 18
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "iconUrl"
+    }
+    nested_type {
+      name: "SecuritySchemesEntry"
+      field {
+        name: "key"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "key"
+      }
+      field {
+        name: "value"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_MESSAGE
+        type_name: ".a2a.v1.SecurityScheme"
+        json_name: "value"
+      }
+      options {
+        map_entry: true
+      }
+    }
+  }
+  message_type {
+    name: "AgentProvider"
+    field {
+      name: "url"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "url"
+    }
+    field {
+      name: "organization"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "organization"
+    }
+  }
+  message_type {
+    name: "AgentCapabilities"
+    field {
+      name: "streaming"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "streaming"
+    }
+    field {
+      name: "push_notifications"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "pushNotifications"
+    }
+    field {
+      name: "extensions"
+      number: 3
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AgentExtension"
+      json_name: "extensions"
+    }
+  }
+  message_type {
+    name: "AgentExtension"
+    field {
+      name: "uri"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "uri"
+    }
+    field {
+      name: "description"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "description"
+    }
+    field {
+      name: "required"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_BOOL
+      json_name: "required"
+    }
+    field {
+      name: "params"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "params"
+    }
+  }
+  message_type {
+    name: "AgentSkill"
+    field {
+      name: "id"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "id"
+    }
+    field {
+      name: "name"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "description"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "description"
+    }
+    field {
+      name: "tags"
+      number: 4
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "tags"
+    }
+    field {
+      name: "examples"
+      number: 5
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "examples"
+    }
+    field {
+      name: "input_modes"
+      number: 6
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "inputModes"
+    }
+    field {
+      name: "output_modes"
+      number: 7
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "outputModes"
+    }
+    field {
+      name: "security"
+      number: 8
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Security"
+      json_name: "security"
+    }
+  }
+  message_type {
+    name: "AgentCardSignature"
+    field {
+      name: "protected"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      options {
+        1052: 2
+      }
+      json_name: "protected"
+    }
+    field {
+      name: "signature"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      options {
+        1052: 2
+      }
+      json_name: "signature"
+    }
+    field {
+      name: "header"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "header"
+    }
+  }
+  message_type {
+    name: "TaskPushNotificationConfig"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+    field {
+      name: "push_notification_config"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.PushNotificationConfig"
+      json_name: "pushNotificationConfig"
+    }
+  }
+  message_type {
+    name: "StringList"
+    field {
+      name: "list"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_STRING
+      json_name: "list"
+    }
+  }
+  message_type {
+    name: "Security"
+    field {
+      name: "schemes"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Security.SchemesEntry"
+      json_name: "schemes"
+    }
+    nested_type {
+      name: "SchemesEntry"
+      field {
+        name: "key"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "key"
+      }
+      field {
+        name: "value"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_MESSAGE
+        type_name: ".a2a.v1.StringList"
+        json_name: "value"
+      }
+      options {
+        map_entry: true
+      }
+    }
+  }
+  message_type {
+    name: "SecurityScheme"
+    field {
+      name: "api_key_security_scheme"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.APIKeySecurityScheme"
+      oneof_index: 0
+      json_name: "apiKeySecurityScheme"
+    }
+    field {
+      name: "http_auth_security_scheme"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.HTTPAuthSecurityScheme"
+      oneof_index: 0
+      json_name: "httpAuthSecurityScheme"
+    }
+    field {
+      name: "oauth2_security_scheme"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.OAuth2SecurityScheme"
+      oneof_index: 0
+      json_name: "oauth2SecurityScheme"
+    }
+    field {
+      name: "open_id_connect_security_scheme"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.OpenIdConnectSecurityScheme"
+      oneof_index: 0
+      json_name: "openIdConnectSecurityScheme"
+    }
+    field {
+      name: "mtls_security_scheme"
+      number: 5
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.MutualTlsSecurityScheme"
+      oneof_index: 0
+      json_name: "mtlsSecurityScheme"
+    }
+    oneof_decl {
+      name: "scheme"
+    }
+  }
+  message_type {
+    name: "APIKeySecurityScheme"
+    field {
+      name: "description"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "description"
+    }
+    field {
+      name: "location"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "location"
+    }
+    field {
+      name: "name"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+  }
+  message_type {
+    name: "HTTPAuthSecurityScheme"
+    field {
+      name: "description"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "description"
+    }
+    field {
+      name: "scheme"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "scheme"
+    }
+    field {
+      name: "bearer_format"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "bearerFormat"
+    }
+  }
+  message_type {
+    name: "OAuth2SecurityScheme"
+    field {
+      name: "description"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "description"
+    }
+    field {
+      name: "flows"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.OAuthFlows"
+      json_name: "flows"
+    }
+    field {
+      name: "oauth2_metadata_url"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "oauth2MetadataUrl"
+    }
+  }
+  message_type {
+    name: "OpenIdConnectSecurityScheme"
+    field {
+      name: "description"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "description"
+    }
+    field {
+      name: "open_id_connect_url"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "openIdConnectUrl"
+    }
+  }
+  message_type {
+    name: "MutualTlsSecurityScheme"
+    field {
+      name: "description"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "description"
+    }
+  }
+  message_type {
+    name: "OAuthFlows"
+    field {
+      name: "authorization_code"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AuthorizationCodeOAuthFlow"
+      oneof_index: 0
+      json_name: "authorizationCode"
+    }
+    field {
+      name: "client_credentials"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.ClientCredentialsOAuthFlow"
+      oneof_index: 0
+      json_name: "clientCredentials"
+    }
+    field {
+      name: "implicit"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.ImplicitOAuthFlow"
+      oneof_index: 0
+      json_name: "implicit"
+    }
+    field {
+      name: "password"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.PasswordOAuthFlow"
+      oneof_index: 0
+      json_name: "password"
+    }
+    oneof_decl {
+      name: "flow"
+    }
+  }
+  message_type {
+    name: "AuthorizationCodeOAuthFlow"
+    field {
+      name: "authorization_url"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "authorizationUrl"
+    }
+    field {
+      name: "token_url"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "tokenUrl"
+    }
+    field {
+      name: "refresh_url"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "refreshUrl"
+    }
+    field {
+      name: "scopes"
+      number: 4
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.AuthorizationCodeOAuthFlow.ScopesEntry"
+      json_name: "scopes"
+    }
+    nested_type {
+      name: "ScopesEntry"
+      field {
+        name: "key"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "key"
+      }
+      field {
+        name: "value"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "value"
+      }
+      options {
+        map_entry: true
+      }
+    }
+  }
+  message_type {
+    name: "ClientCredentialsOAuthFlow"
+    field {
+      name: "token_url"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "tokenUrl"
+    }
+    field {
+      name: "refresh_url"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "refreshUrl"
+    }
+    field {
+      name: "scopes"
+      number: 3
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.ClientCredentialsOAuthFlow.ScopesEntry"
+      json_name: "scopes"
+    }
+    nested_type {
+      name: "ScopesEntry"
+      field {
+        name: "key"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "key"
+      }
+      field {
+        name: "value"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "value"
+      }
+      options {
+        map_entry: true
+      }
+    }
+  }
+  message_type {
+    name: "ImplicitOAuthFlow"
+    field {
+      name: "authorization_url"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "authorizationUrl"
+    }
+    field {
+      name: "refresh_url"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "refreshUrl"
+    }
+    field {
+      name: "scopes"
+      number: 3
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.ImplicitOAuthFlow.ScopesEntry"
+      json_name: "scopes"
+    }
+    nested_type {
+      name: "ScopesEntry"
+      field {
+        name: "key"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "key"
+      }
+      field {
+        name: "value"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "value"
+      }
+      options {
+        map_entry: true
+      }
+    }
+  }
+  message_type {
+    name: "PasswordOAuthFlow"
+    field {
+      name: "token_url"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "tokenUrl"
+    }
+    field {
+      name: "refresh_url"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "refreshUrl"
+    }
+    field {
+      name: "scopes"
+      number: 3
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.PasswordOAuthFlow.ScopesEntry"
+      json_name: "scopes"
+    }
+    nested_type {
+      name: "ScopesEntry"
+      field {
+        name: "key"
+        number: 1
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "key"
+      }
+      field {
+        name: "value"
+        number: 2
+        label: LABEL_OPTIONAL
+        type: TYPE_STRING
+        json_name: "value"
+      }
+      options {
+        map_entry: true
+      }
+    }
+  }
+  message_type {
+    name: "SendMessageRequest"
+    field {
+      name: "request"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Message"
+      options {
+        1052: 2
+      }
+      json_name: "message"
+    }
+    field {
+      name: "configuration"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.SendMessageConfiguration"
+      json_name: "configuration"
+    }
+    field {
+      name: "metadata"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".google.protobuf.Struct"
+      json_name: "metadata"
+    }
+  }
+  message_type {
+    name: "GetTaskRequest"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      options {
+        1052: 2
+      }
+      json_name: "name"
+    }
+    field {
+      name: "history_length"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+      json_name: "historyLength"
+    }
+  }
+  message_type {
+    name: "CancelTaskRequest"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+  }
+  message_type {
+    name: "GetTaskPushNotificationConfigRequest"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+  }
+  message_type {
+    name: "DeleteTaskPushNotificationConfigRequest"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+  }
+  message_type {
+    name: "CreateTaskPushNotificationConfigRequest"
+    field {
+      name: "parent"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      options {
+        1052: 2
+      }
+      json_name: "parent"
+    }
+    field {
+      name: "config_id"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      options {
+        1052: 2
+      }
+      json_name: "configId"
+    }
+    field {
+      name: "config"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.TaskPushNotificationConfig"
+      options {
+        1052: 2
+      }
+      json_name: "config"
+    }
+  }
+  message_type {
+    name: "TaskSubscriptionRequest"
+    field {
+      name: "name"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "name"
+    }
+  }
+  message_type {
+    name: "ListTaskPushNotificationConfigRequest"
+    field {
+      name: "parent"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "parent"
+    }
+    field {
+      name: "page_size"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_INT32
+      json_name: "pageSize"
+    }
+    field {
+      name: "page_token"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "pageToken"
+    }
+  }
+  message_type {
+    name: "GetAgentCardRequest"
+  }
+  message_type {
+    name: "SendMessageResponse"
+    field {
+      name: "task"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Task"
+      oneof_index: 0
+      json_name: "task"
+    }
+    field {
+      name: "msg"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Message"
+      oneof_index: 0
+      json_name: "message"
+    }
+    oneof_decl {
+      name: "payload"
+    }
+  }
+  message_type {
+    name: "StreamResponse"
+    field {
+      name: "task"
+      number: 1
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Task"
+      oneof_index: 0
+      json_name: "task"
+    }
+    field {
+      name: "msg"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.Message"
+      oneof_index: 0
+      json_name: "message"
+    }
+    field {
+      name: "status_update"
+      number: 3
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.TaskStatusUpdateEvent"
+      oneof_index: 0
+      json_name: "statusUpdate"
+    }
+    field {
+      name: "artifact_update"
+      number: 4
+      label: LABEL_OPTIONAL
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.TaskArtifactUpdateEvent"
+      oneof_index: 0
+      json_name: "artifactUpdate"
+    }
+    oneof_decl {
+      name: "payload"
+    }
+  }
+  message_type {
+    name: "ListTaskPushNotificationConfigResponse"
+    field {
+      name: "configs"
+      number: 1
+      label: LABEL_REPEATED
+      type: TYPE_MESSAGE
+      type_name: ".a2a.v1.TaskPushNotificationConfig"
+      json_name: "configs"
+    }
+    field {
+      name: "next_page_token"
+      number: 2
+      label: LABEL_OPTIONAL
+      type: TYPE_STRING
+      json_name: "nextPageToken"
+    }
+  }
+  enum_type {
+    name: "TaskState"
+    value {
+      name: "TASK_STATE_UNSPECIFIED"
+      number: 0
+    }
+    value {
+      name: "TASK_STATE_SUBMITTED"
+      number: 1
+    }
+    value {
+      name: "TASK_STATE_WORKING"
+      number: 2
+    }
+    value {
+      name: "TASK_STATE_COMPLETED"
+      number: 3
+    }
+    value {
+      name: "TASK_STATE_FAILED"
+      number: 4
+    }
+    value {
+      name: "TASK_STATE_CANCELLED"
+      number: 5
+    }
+    value {
+      name: "TASK_STATE_INPUT_REQUIRED"
+      number: 6
+    }
+    value {
+      name: "TASK_STATE_REJECTED"
+      number: 7
+    }
+    value {
+      name: "TASK_STATE_AUTH_REQUIRED"
+      number: 8
+    }
+  }
+  enum_type {
+    name: "Role"
+    value {
+      name: "ROLE_UNSPECIFIED"
+      number: 0
+    }
+    value {
+      name: "ROLE_USER"
+      number: 1
+    }
+    value {
+      name: "ROLE_AGENT"
+      number: 2
+    }
+  }
+  service {
+    name: "A2AService"
+    method {
+      name: "SendMessage"
+      input_type: ".a2a.v1.SendMessageRequest"
+      output_type: ".a2a.v1.SendMessageResponse"
+      options {
+        72295728 {
+          4: "/v1/message:send"
+          7: "*"
+        }
+      }
+    }
+    method {
+      name: "SendStreamingMessage"
+      input_type: ".a2a.v1.SendMessageRequest"
+      output_type: ".a2a.v1.StreamResponse"
+      options {
+        72295728 {
+          4: "/v1/message:stream"
+          7: "*"
+        }
+      }
+      server_streaming: true
+    }
+    method {
+      name: "GetTask"
+      input_type: ".a2a.v1.GetTaskRequest"
+      output_type: ".a2a.v1.Task"
+      options {
+        72295728 {
+          2: "/v1/{name=tasks/*}"
+        }
+        1051: "name"
+      }
+    }
+    method {
+      name: "CancelTask"
+      input_type: ".a2a.v1.CancelTaskRequest"
+      output_type: ".a2a.v1.Task"
+      options {
+        72295728 {
+          4: "/v1/{name=tasks/*}:cancel"
+          7: "*"
+        }
+      }
+    }
+    method {
+      name: "TaskSubscription"
+      input_type: ".a2a.v1.TaskSubscriptionRequest"
+      output_type: ".a2a.v1.StreamResponse"
+      options {
+        72295728 {
+          2: "/v1/{name=tasks/*}:subscribe"
+        }
+      }
+      server_streaming: true
+    }
+    method {
+      name: "CreateTaskPushNotificationConfig"
+      input_type: ".a2a.v1.CreateTaskPushNotificationConfigRequest"
+      output_type: ".a2a.v1.TaskPushNotificationConfig"
+      options {
+        72295728 {
+          4: "/v1/{parent=tasks/*/pushNotificationConfigs}"
+          7: "config"
+        }
+        1051: "parent,config"
+      }
+    }
+    method {
+      name: "GetTaskPushNotificationConfig"
+      input_type: ".a2a.v1.GetTaskPushNotificationConfigRequest"
+      output_type: ".a2a.v1.TaskPushNotificationConfig"
+      options {
+        72295728 {
+          2: "/v1/{name=tasks/*/pushNotificationConfigs/*}"
+        }
+        1051: "name"
+      }
+    }
+    method {
+      name: "ListTaskPushNotificationConfig"
+      input_type: ".a2a.v1.ListTaskPushNotificationConfigRequest"
+      output_type: ".a2a.v1.ListTaskPushNotificationConfigResponse"
+      options {
+        72295728 {
+          2: "/v1/{parent=tasks/*}/pushNotificationConfigs"
+        }
+        1051: "parent"
+      }
+    }
+    method {
+      name: "GetAgentCard"
+      input_type: ".a2a.v1.GetAgentCardRequest"
+      output_type: ".a2a.v1.AgentCard"
+      options {
+        72295728 {
+          2: "/v1/card"
+        }
+      }
+    }
+    method {
+      name: "DeleteTaskPushNotificationConfig"
+      input_type: ".a2a.v1.DeleteTaskPushNotificationConfigRequest"
+      output_type: ".google.protobuf.Empty"
+      options {
+        72295728 {
+          5: "/v1/{name=tasks/*/pushNotificationConfigs/*}"
+        }
+        1051: "name"
+      }
+    }
+  }
+  options {
+    java_package: "com.google.a2a.v1"
+    java_outer_classname: "A2A"
+    java_multiple_files: true
+    go_package: "google.golang.org/a2a/v1"
+    csharp_namespace: "A2a.V1"
+  }
+  syntax: "proto3"
+}
