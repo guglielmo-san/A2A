@@ -1,0 +1,15 @@
+// Older protoc compilers don't understand edition yet.
+syntax = "proto3";
+package a2a.v1;
+
+// --8<-- [start:AgentProvider]
+// Represents information about the service provider of an agent.
+message AgentProvider {
+  // The providers reference url
+  // Example: "https://ai.google.dev"
+  string url = 1;
+  // The providers organization name
+  // Example: "Google"
+  string organization = 2;
+}
+// --8<-- [end:AgentProvider]

@@ -1,9 +1,11 @@
 const protobuf = require('protobufjs');
 const path = require('path');
 const fs = require('fs');
+const { log } = require('console');
 
 // Resolve paths from the script's location to make it runnable from anywhere
 const protoPath = path.resolve(__dirname, '../../specification/grpc/a2a.proto');
+// const protoPath = path.resolve(__dirname, './test.proto');
 const googleProtoPath = path.resolve(__dirname, '../node_modules/google-proto-files');
 const outputPath = path.resolve(__dirname, './a2a.json');
 
@@ -21,7 +23,7 @@ root.resolvePath = function(origin, target) {
 };
 
 // Load the main proto file, keeping comments
-root.loadSync(protoPath, { keepCase: true });
+root.loadSync(protoPath, { keepCase: true, alternateCommentMode: true });
 
 // Convert to a JSON descriptor
 const descriptor = root.toJSON({ keepComments: true });
@@ -75,19 +77,30 @@ function transformToSchema(namespace, prefix = '') {
     let definitions = {};
 
     if (namespace.nested) {
+        // console.log('this is the namespace: ', namespace); 
         for (const key in namespace.nested) {
+            // console.log('this is the key: ', key);
             const nestedItem = namespace.nested[key];
-            const fullName = prefix ? `${prefix}.${key}` : key;
+            const fullName = key;
 
+            // console.log('this is the nestedItem: ', nestedItem);
             if (nestedItem.fields) { // It's a message
                 const properties = {};
+                const examples = [];
                 const required = [];
 
                 for (const fieldName in nestedItem.fields) {
+                    // console.log('this is the field: ', nestedItem.fields[fieldName]);
                     const field = nestedItem.fields[fieldName];
                     const prop = getJsonSchemaType(field);
                     if (field.comment) {
-                        prop.description = field.comment;
+                        let description = field.comment;
+                        if (field.comment.includes('Example:')) {
+                            const exampleMatch = field.comment.match(/Example:\s*(.*)/);
+                            examples.push(exampleMatch[0].trim());
+                            description = field.comment.split('Example:')[0].trim();
+                        }
+                        prop.description = description;
                     }
                     properties[fieldName] = prop;
                     // In proto3, every field is optional, but for this schema we'll mark them as required
@@ -101,7 +114,15 @@ function transformToSchema(namespace, prefix = '') {
                     required: required
                 };
                 if (nestedItem.comment) {
-                    definitions[fullName].description = nestedItem.comment;
+                    if (nestedItem.comment.includes(']\n')) {
+                        const commentParts = nestedItem.comment.split(']\n');
+                        definitions[fullName].description = commentParts[1].trim();
+                    } else {
+                        definitions[fullName].description = nestedItem.comment;
+                    }
+                }
+                if (examples.length > 0) {
+                    definitions[fullName].examples = examples;
                 }
             } else if (nestedItem.values) { // It's an enum
                  definitions[fullName] = {
@@ -109,6 +130,7 @@ function transformToSchema(namespace, prefix = '') {
                     enum: Object.keys(nestedItem.values)
                 };
                  if (nestedItem.comment) {
+                    // console.log('this is the comment: ', nestedItem.comment);
                     definitions[fullName].description = nestedItem.comment;
                 }
             }
@@ -129,6 +151,7 @@ const schema = {
 };
 
 const finalJsonString = JSON.stringify(schema, null, 2);
+
 
 fs.writeFileSync(outputPath, finalJsonString);
 
